@@ -1,0 +1,6 @@
+The project looks interesting, but I would also ask you to add one
+more twist. Once you have the basic emulation in place, create a
+variant where the CPU has a two-stage pipeline (i.e., fetch/decode
+followed by execute/writeback). I do not know if there is any
+literature on this, and so you are free to design something
+appropriate.
