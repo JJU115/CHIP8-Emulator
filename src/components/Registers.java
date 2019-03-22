@@ -1,17 +1,19 @@
-public class Registers{
+import components.Mux;
+
+public class Registers implements ReadableDevice{
 	
 	private short PC;	//ProgramCounter
 	private byte SP;	//StackPointer
 	private short I;	//Generally used to store memory addresses
 	private byte DelayTimer;
 	private byte SoundTimer;
-	
+	private Mux pcInput;
 	
 	private byte[] V = new byte[16]; 		//16 8-bit registers (NOTE:V[15] reserved for flag) 
 	private short[] Stack = new short[16];	//16 16-bit stack locations
 	
 	
-	public Registers(){
+	public Registers(Mux pcInput){
 		//Set PC and clear everything else
 		PC = 0x200;
 		SP = 0;
@@ -22,6 +24,11 @@ public class Registers{
 		}
 		DelayTimer = 0;
 		SoundTimer = 0;
+		this.pcInput = pcInput;
+	}
+
+	public void clock(){
+		setPC((short) pcInput.read(0));
 	}
 	
 	//indexed from 0-15
@@ -78,4 +85,12 @@ public class Registers{
 	public byte getSoundTimer(){
 		return SoundTimer;
 	}
+
+	@Override
+	public int read(int input){
+		if(input == 0){
+			return loadStack();
+		}
+	}
+	
 }

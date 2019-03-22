@@ -7,6 +7,8 @@ package components;
 
 
 import interfaces.ReadableDevice;
+import components.registers;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,6 +21,7 @@ public class Memory implements ReadableDevice {
     private byte dataResult;
     private int targetAddress;
     ReadableDevice control;
+    Registers registers;
 
 
     public Memory(ReadableDevice control, File input) {
@@ -55,6 +58,12 @@ public class Memory implements ReadableDevice {
 
     public byte load(int address) {
         return memory[address];
+    }
+    public int loadInstruction(){
+        int instruction = memory[registers.getPC()];
+        instruction = instruction << 8;
+        instruction = instruction | (int) memory[registers.getPC() +1];
+        return instruction;
     }
 
 

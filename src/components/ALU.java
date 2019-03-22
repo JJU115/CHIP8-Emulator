@@ -1,14 +1,14 @@
 package components;
 
 import interfaces.ReadableDevice;
-
+import components.Registers;
 /**
  * ALU Component
  */
 public class ALU implements ReadableDevice{
     private int result;
     ReadableDevice mux;
-    ReadableDevice registers;
+    Registers registers;
     ReadableDevice control;
 
     public ALU(ReadableDevice mux, ReadableDevice registers, ReadableDevice control){
@@ -21,6 +21,9 @@ public class ALU implements ReadableDevice{
         switch (control.read(0)){
             case 1:
                 result = registers.read(0) + mux.read(0);
+                if(result > 255){
+                    
+                }
                 break;
             case 2:
                 result = registers.read(0) - mux.read(0);
