@@ -7,6 +7,6 @@ import componentsv2.Display;
 /**
  * opcode
  */
-public interface opcode {
+public interface Opcode {
     public void execute(short data1, short data2, short data3, Memory memory, Display display, Registers registers);
 }
