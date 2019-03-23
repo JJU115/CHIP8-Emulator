@@ -2,7 +2,16 @@ package componentsv2;
 
 import components.Memory;
 import interfacesv2.opcode;
+import opcodes.AddConstToRegister;
+import opcodes.CallAddress;
 import opcodes.ClearDisplayOpcode;
+import opcodes.JumpAddress;
+import opcodes.ReturnSubroutine;
+import opcodes.SetRegisterEqualConst;
+import opcodes.SetRegisterToRegister;
+import opcodes.SkipNextInstructionEqualConst;
+import opcodes.SkipNextInstructionEqualRegister;
+import opcodes.SkipNextInstructionNotEqualConst;
 
 /**
  * FetchDecode
@@ -30,17 +39,48 @@ public class FetchDecode {
                         fetchDecodeBuffer.setOpcode(new ClearDisplayOpcode());
                         break;
                     case 0xE:
+                        fetchDecodeBuffer.setOpcode(new ReturnSubroutine());
+                        break;
                 }
+            break;
             case 1:
+                fetchDecodeBuffer.setOpcode(new JumpAddress());
+                fetchDecodeBuffer.setData1(opcode & 0x0FFF);
+                break;
             case 2:
+                fetchDecodeBuffer.setOpcode(new CallAddress());
+                fetchDecodeBuffer.setData1(opcode & 0x0FFF);
+                break;
             case 3:
+                fetchDecodeBuffer.setOpcode(new SkipNextInstructionEqualConst());
+                fetchDecodeBuffer.setData1((opcode & 0x0F00) >>8);
+                fetchDecodeBuffer.setData2(opcode & 0x00FF);
+                break;
             case 4:
+                fetchDecodeBuffer.setOpcode(new SkipNextInstructionNotEqualConst());
+                fetchDecodeBuffer.setData1((opcode & 0x0F00) >>8);
+                fetchDecodeBuffer.setData2(opcode & 0x00FF);
+                break;
             case 5:
+                fetchDecodeBuffer.setOpcode(new SkipNextInstructionEqualRegister());
+                fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
+                fetchDecodeBuffer.setData2((opcode & 0x00F0) >> 4);
+                break;
             case 6:
+                fetchDecodeBuffer.setOpcode(new SetRegisterEqualConst());
+                fetchDecodeBuffer.setData1((opcode & 0x0F00) >>8);
+                fetchDecodeBuffer.setData2(opcode & 0x00FF);
+                break;
             case 7:
+                fetchDecodeBuffer.setOpcode(new AddConstToRegister());
+                fetchDecodeBuffer.setData1((opcode & 0x0F00) >>8);
+                fetchDecodeBuffer.setData2(opcode & 0x00FF);
+                break;
             case 8:  
                 switch(lastNum){
                     case 0:
+                        fetchDecodeBuffer.setOpcode(new SetRegisterToRegister());
+                        
                     case 1:
                     case 2:
                     case 3:
