@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.io.FileInputStream;
 
 
-public class Memory implements ReadableDevice {
-
+public class Memory {
     private byte[] memory;
     private byte dataResult;
     private int targetAddress;
@@ -76,8 +75,6 @@ public class Memory implements ReadableDevice {
         targetAddress = addr;
     }
 
-
-    @Override
     public int read(int output) {
         return dataResult;
     }
