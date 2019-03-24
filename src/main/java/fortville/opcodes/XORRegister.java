@@ -11,6 +11,14 @@ import fortville.components.Registers;
 public class XORRegister implements Opcode{
     @Override
     public void execute(short data1, short data2, short data3, Memory memory, Display display, Registers registers){
-        
+        /*8xy3 - XOR Vx, Vy
+		Set Vx = Vx XOR Vy.
+		Performs a bitwise exclusive OR on the values of Vx and Vy, then stores the result in Vx.
+		An exclusive OR compares the corrseponding bits from two values, and if the bits are not both the same,
+		then the corresponding bit in the result is set to 1. Otherwise, it is 0.*/ 
+		registers.storeRegister(data1, (byte) ((registers.loadRegister(data1))^(registers.loadRegister(data2))));
+
+		//Do we want incrementPC in opcode execution?
+		registers.incrementPC();
     }
 }
