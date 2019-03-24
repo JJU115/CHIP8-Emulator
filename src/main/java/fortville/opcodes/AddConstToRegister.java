@@ -14,7 +14,7 @@ public class AddConstToRegister implements Opcode{
          /*7xkk - ADD Vx, byte
 		Set Vx = Vx + kk.
 		Adds the value kk to the value of register Vx, then stores the result in Vx. */
-		int kk = (data2 <<4) + data3;
+		int kk = data2;
 		int VX = registers.loadRegister(data1);
 		int sum = VX + kk;
 
