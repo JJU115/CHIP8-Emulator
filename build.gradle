@@ -1,0 +1,18 @@
+apply plugin: 'java-library'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+group 'fortville'
+version '0.0.1'
+
+mainClassName = "fortville.CHIP8"
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
