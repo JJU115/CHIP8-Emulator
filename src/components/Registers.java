@@ -29,11 +29,11 @@ public class Registers{
 	}
 	
 	//indexed from 0-15
-	public void storeRegister(int regNum, byte data){
+	public void storeRegister(short regNum, byte data){
 		V[regNum] = data;
 	}
 	
-	public byte loadRegister(int regNum){
+	public byte loadRegister(short regNum){
 		return V[regNum];
 	}
 	
