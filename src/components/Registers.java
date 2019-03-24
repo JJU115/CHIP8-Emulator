@@ -1,4 +1,3 @@
-
 public class Registers{
 	
 	private short PC;	//ProgramCounter
@@ -65,7 +64,7 @@ public class Registers{
 	}
 	
 	public void incrementPC(){
-		PC += 1;
+		PC += 2;
 	}
 	
 	public void setDelayTimer(byte data){
