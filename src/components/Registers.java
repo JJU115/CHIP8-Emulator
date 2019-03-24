@@ -10,7 +10,7 @@ public class Registers{
 	private short[] Stack = new short[16];	//16 16-bit stack locations
 	
 	
-	public Registers(Mux pcInput){
+	public Registers(){
 		//Set PC and clear everything else
 		PC = 0x200;
 		SP = 0;
@@ -21,12 +21,11 @@ public class Registers{
 		}
 		DelayTimer = 0;
 		SoundTimer = 0;
-		this.pcInput = pcInput;
 	}
 
-	public void clock(){
+	/*public void clock(){
 		setPC((short) pcInput.read(0));
-	}
+	}*/
 	
 	//indexed from 0-15
 	public void storeRegister(short regNum, byte data){
