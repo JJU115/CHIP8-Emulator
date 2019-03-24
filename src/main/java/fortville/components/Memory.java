@@ -58,10 +58,10 @@ public class Memory {
     public byte load(int address) {
         return memory[address];
     }
-    public int loadInstruction(){
-        int instruction = memory[registers.getPC()];
-        instruction = instruction << 8;
-        instruction = instruction | (int) memory[registers.getPC() +1];
+    public short loadInstruction() {
+        short instruction = memory[registers.getPC()];
+        instruction <<= 8;
+        instruction |= memory[registers.getPC() + 1];
         return instruction;
     }
 
