@@ -5,6 +5,8 @@ import fortville.components.Memory;
 import fortville.components.Display;
 import fortville.components.Registers;
 
+import java.util.Random;
+
 /**
  * SetRegisterToRand
  */
