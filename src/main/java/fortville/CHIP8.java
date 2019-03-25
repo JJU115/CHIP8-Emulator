@@ -6,7 +6,6 @@ public class CHIP8 {
     public static void main(String[] args) {
         System.out.println("CHIP-8");
 
-        Display d = new Display();
         byte[] sp = new byte[9];
         sp[0] = 0x3C;
         sp[1] = 0x42;
@@ -17,6 +16,8 @@ public class CHIP8 {
         sp[6] = (byte) 0x99;
         sp[7] = 0x42;
         sp[8] = 0x3C;
+
+        Display d = new Display();
         d.drawSprite(sp, 0, 0);
     }
 }

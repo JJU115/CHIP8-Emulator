@@ -1,18 +1,15 @@
 package fortville.components;
 
-
 /*
     Memory.java - Data/Instruction memory for simulated CHIP-8 Architecture
 */
 
-
 import fortville.components.Registers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.FileInputStream;
-
 
 public class Memory {
     private byte[] memory;
@@ -20,10 +17,9 @@ public class Memory {
     private int targetAddress;
     Registers registers;
 
-
     public Memory(File input) {
         memory = new byte[4096];
-        
+
         FileInputStream fileReader;
         try {
             fileReader = new FileInputStream(input);
@@ -39,10 +35,10 @@ public class Memory {
         }
     }
 
-
     public byte load(int address) {
         return memory[address];
     }
+
     public short loadInstruction() {
         short instruction = memory[registers.getPC()];
         instruction <<= 8;
@@ -50,11 +46,9 @@ public class Memory {
         return instruction;
     }
 
-
     public void store(byte data, int address) {
         memory[address] = data;
     }
-
 
     public void setAddress(int addr) {
         targetAddress = addr;
@@ -63,5 +57,4 @@ public class Memory {
     public int read(int output) {
         return dataResult;
     }
-
 }
