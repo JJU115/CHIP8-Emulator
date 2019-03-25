@@ -6,7 +6,6 @@ package fortville.components;
 */
 
 
-// XXX import fortville.interfaces.ReadableDevice;
 import fortville.components.Registers;
 
 import java.io.File;
@@ -19,12 +18,10 @@ public class Memory {
     private byte[] memory;
     private byte dataResult;
     private int targetAddress;
-    ReadableDevice control;
     Registers registers;
 
 
-    public Memory(ReadableDevice control, File input) {
-        this.control = control;
+    public Memory(File input) {
         memory = new byte[4096];
         
         FileInputStream fileReader;
@@ -40,18 +37,6 @@ public class Memory {
             System.err.println("ERROR: an I/O error occurred.");
             System.exit(-1);
         }
-    }
-
-
-    public void clock() {
-        switch (control.read(0)){
-            case 1:
-                store(dataResult, targetAddress);
-                break;
-            case 2:
-                dataResult = load(targetAddress);
-                break;
-        }    
     }
 
 

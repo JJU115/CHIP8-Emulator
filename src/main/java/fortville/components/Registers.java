@@ -25,10 +25,6 @@ public class Registers{
 		SoundTimer = 0;
 	}
 
-	/*public void clock(){
-		setPC((short) pcInput.read(0));
-	}*/
-	
 	//indexed from 0-15
 	public void storeRegister(short regNum, byte data){
 		V[regNum] = data;
