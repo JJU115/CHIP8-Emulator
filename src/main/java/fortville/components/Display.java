@@ -55,13 +55,13 @@ public class Display {
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < 8; j++) {
                 if (collision == 0) {
-                    if ((setPixels[x + j][y + i]
+                    if ((setPixels[(x + j)%64][(y + i)%32]
                           & ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j) > 0) {
                         collision = 1;
                     }
                 }
 
-                setPixel(x + j, y + i, ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j);
+                setPixel((x + j)%64, (y + i)%32, ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j);
             }
         }
 
