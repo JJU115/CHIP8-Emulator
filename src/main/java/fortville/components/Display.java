@@ -45,7 +45,7 @@ public class Display {
         panel.repaint();
     }
 
-    public int drawSprite(byte[] sprite, int x, int y) {
+    public byte drawSprite(byte[] sprite, int x, int y) {
 
         int collision = 0;
         for (int i = 0; i < sprite.length; i++) {
