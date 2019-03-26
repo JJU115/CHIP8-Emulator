@@ -65,6 +65,15 @@ public class Display {
         return collision;
     }
 
+    public void clear() {
+        for (int i=0; i<64; i++)
+            for (int j=0; j<32; j++)
+                setPixels[i][j] = 0;
+        
+        panel.repaint();        
+    }
+
+
     // Main method for testing purposes only
     public static void main(String[] args) {
         byte[] sp = new byte[9];
