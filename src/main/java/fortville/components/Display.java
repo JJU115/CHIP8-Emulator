@@ -9,7 +9,6 @@ public class Display {
     private DrawPanel panel;
     private int[][] setPixels;
 
-
     class DrawPanel extends JPanel {
 
         public void paintComponent(Graphics g) {
@@ -28,7 +27,6 @@ public class Display {
         }
     }
 
-
     public Display() {
         display = new JFrame("CHIP-8");
         setPixels = new int[64][32];
@@ -42,12 +40,10 @@ public class Display {
         display.setVisible(true);
     }
 
-
     public void setPixel(int x, int y, int p) {
         setPixels[x][y] = setPixels[x][y] ^ p;
         panel.repaint();
     }
-
 
     public int drawSprite(byte[] sprite, int x, int y) {
 
@@ -55,19 +51,19 @@ public class Display {
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < 8; j++) {
                 if (collision == 0) {
-                    if ((setPixels[(x + j)%64][(y + i)%32]
+                    if ((setPixels[(x + j) % 64][(y + i) % 32]
                           & ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j) > 0) {
                         collision = 1;
                     }
                 }
 
-                setPixel((x + j)%64, (y + i)%32, ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j);
+                setPixel((x + j) % 64, (y + i) % 32,
+                    ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j);
             }
         }
 
         return collision;
     }
-
 
     // Main method for testing purposes only
     public static void main(String[] args) {
