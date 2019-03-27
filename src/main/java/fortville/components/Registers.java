@@ -2,16 +2,16 @@ package fortville.components;
 
 public class Registers {
 
-    private short PC;           // Program Counter
-    private byte SP;            // Stack Pointer
-    private short I;            // Generally used to store memory addresses
+    private short PC; // Program Counter
+    private byte SP; // Stack Pointer
+    private short I; // Generally used to store memory addresses
     private byte delayTimer;
     private byte soundTimer;
 
     // 16 8-bit registers (NOTE:V[15] reserved for flag)
     private byte[] V = new byte[16];
 
-    private short[] Stack = new short[16];      // 16 16-bit stack locations
+    private short[] Stack = new short[16]; // 16 16-bit stack locations
 
     public Registers() {
         // Set PC and clear everything else
@@ -79,5 +79,16 @@ public class Registers {
 
     public byte getSoundTimer() {
         return soundTimer;
+    }
+
+    public void deincrementTimers() {
+        if (soundTimer > 0) {
+            Thread thread = new Thread(new Sound());
+            thread.start();
+            soundTimer--;
+        }
+        if(delayTimer > 0){
+            delayTimer--;
+        }
     }
 }

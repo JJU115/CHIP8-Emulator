@@ -10,8 +10,8 @@ import fortville.components.Memory;
 import fortville.components.Registers;
 
 public class CHIP8 {
-    public static void main(String[] args) {
-        String filename = "roms/input.ch8"; // Not sure how we want to input file names with gradle
+    public static void main(String[] args) throws InterruptedException {
+        String filename = "roms/input.ch8"; //TODO: Figure out how we want to input file names with gradle
         Registers registers = new Registers();
         Memory memory = new Memory(new File(filename), registers);
         Display display = new Display();
@@ -20,8 +20,10 @@ public class CHIP8 {
         ExecuteWriteback executeWriteback = new ExecuteWriteback(memory, registers, fetchBuffer, display);
 
         for (;;) {
+            System.out.println("Clock");
             fetchDecode.clock();
             executeWriteback.clock();
+            registers.deincrementTimers();
         }
     }
 }
