@@ -56,8 +56,9 @@ public class FetchDecode {
         short opcode = memory.loadInstruction();
         byte firstNum = (byte)((opcode & 0xF000) >> 12);
         byte lastNum = (byte)(opcode & 0x000F);
-        if(opcode == 0){
-            System.exit(0); //Tempory thing to end the program when it's done, will need to be changed
+        if (opcode == 0) {
+            // Tempory thing to end the program when it's done, will need to be changed
+            System.exit(0);
         }
         switch (firstNum) {
         case 0:

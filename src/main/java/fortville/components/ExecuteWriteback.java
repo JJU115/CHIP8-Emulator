@@ -12,7 +12,9 @@ public class ExecuteWriteback {
     Buffer fetchDecodeBuffer;
     Display display;
 
-    public ExecuteWriteback(Memory memory, Registers registers, Buffer fetchBuffer, Display display) {
+    public ExecuteWriteback(Memory memory, Registers registers,
+        Buffer fetchBuffer, Display display) {
+
         this.memory = memory;
         this.registers = registers;
         this.fetchDecodeBuffer = fetchBuffer;

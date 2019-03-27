@@ -22,8 +22,8 @@ public class Draw implements Opcode {
             spriteData[i] = memory.load(memI++);
         }
 
-        registers.storeRegister((short) 15, 
-            display.drawSprite(spriteData, registers.loadRegister(data1), registers.loadRegister(data2)));
-            
+        registers.storeRegister((short)15, display.drawSprite(spriteData,
+            registers.loadRegister(data1), registers.loadRegister(data2)));
+
     }
 }

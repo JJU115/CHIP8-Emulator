@@ -21,7 +21,8 @@ public class CHIP8 {
         Display display = new Display();
         Buffer fetchBuffer = new Buffer();
         FetchDecode fetchDecode = new FetchDecode(memory, registers, fetchBuffer);
-        ExecuteWriteback executeWriteback = new ExecuteWriteback(memory, registers, fetchBuffer, display);
+        ExecuteWriteback executeWriteback = new ExecuteWriteback(memory, registers,
+            fetchBuffer, display);
 
         for (;;) {
             System.out.println("Clock");

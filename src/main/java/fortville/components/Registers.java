@@ -87,7 +87,7 @@ public class Registers {
             thread.start();
             soundTimer--;
         }
-        if(delayTimer > 0){
+        if (delayTimer > 0) {
             delayTimer--;
         }
     }
