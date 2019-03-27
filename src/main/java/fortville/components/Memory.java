@@ -6,10 +6,11 @@ package fortville.components;
 
 import fortville.components.Registers;
 
-import java.io.File;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Memory {
     private byte[] memory;
@@ -17,15 +18,19 @@ public class Memory {
     private int targetAddress;
     Registers registers;
 
-    public Memory(File input, Registers registers) {
+    public Memory(String filename, Registers registers) {
         this.registers = registers;
         memory = new byte[4096];
-        FileInputStream fileReader;
+        BufferedInputStream fileReader;
         try {
-            fileReader = new FileInputStream(input);
+            InputStream input = ClassLoader.getSystemClassLoader().getResourceAsStream(filename);
+            if (input != null) {
+                fileReader = new BufferedInputStream(input);
+            } else {
+                fileReader = new BufferedInputStream(new FileInputStream(filename));
+            }
             int read = fileReader.read(memory, 0x200, 3583);
-            System.out.println("Read " + read + " bytes from " + input.getName());
-
+            System.out.println("Read " + read + " bytes from " + filename);
         } catch (FileNotFoundException e) {
             System.err.println("ERROR: The input file could not be found.");
             System.exit(-1);

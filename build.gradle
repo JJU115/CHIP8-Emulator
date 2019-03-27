@@ -42,3 +42,13 @@ test {
         showStandardStreams = true
     }
 }
+
+def roms = [
+    input: 'input.ch8',
+    pong_1: 'Pong (1 player).ch8'
+]
+
+run {
+    args = ["${roms.input}"]
+//    args = ["${roms.pong_1}"]
+}
