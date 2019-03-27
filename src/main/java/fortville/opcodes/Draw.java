@@ -18,7 +18,7 @@ public class Draw implements Opcode {
         short memI = registers.loadI();
         byte[] spriteData = new byte[data3];
 
-        for (int i=0; i<data3; i++) {
+        for (int i = 0; i < data3; i++) {
             spriteData[i] = memory.load(memI++);
         }
 

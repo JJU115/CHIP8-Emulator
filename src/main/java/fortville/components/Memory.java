@@ -17,9 +17,9 @@ public class Memory {
     private int targetAddress;
     Registers registers;
 
-    public Memory(File input) {
+    public Memory(File input, Registers registers) {
+        this.registers = registers;
         memory = new byte[4096];
-
         FileInputStream fileReader;
         try {
             fileReader = new FileInputStream(input);

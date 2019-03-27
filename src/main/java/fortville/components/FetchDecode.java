@@ -54,9 +54,11 @@ public class FetchDecode {
 
     public void clock() {
         short opcode = memory.loadInstruction();
-        byte firstNum = (byte)(opcode & 0xF000);
+        byte firstNum = (byte)((opcode & 0xF000) >> 12);
         byte lastNum = (byte)(opcode & 0x000F);
-
+        if(opcode == 0){
+            System.exit(0); //Tempory thing to end the program when it's done, will need to be changed
+        }
         switch (firstNum) {
         case 0:
             switch (lastNum) {
@@ -126,6 +128,7 @@ public class FetchDecode {
                 fetchDecodeBuffer.setData2((short)((opcode & 0x00F0) >> 4));
                 break;
             case 4:
+                System.out.println("Adding reg");
                 fetchDecodeBuffer.setOpcode(new AddRegister());
                 fetchDecodeBuffer.setData1((short)((opcode & 0x0F00) >> 8));
                 fetchDecodeBuffer.setData2((short)((opcode & 0x00F0) >> 4));

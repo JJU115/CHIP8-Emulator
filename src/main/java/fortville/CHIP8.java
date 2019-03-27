@@ -1,23 +1,27 @@
 package fortville;
 
+import java.io.File;
+
+import fortville.components.Buffer;
 import fortville.components.Display;
+import fortville.components.ExecuteWriteback;
+import fortville.components.FetchDecode;
+import fortville.components.Memory;
+import fortville.components.Registers;
 
 public class CHIP8 {
     public static void main(String[] args) {
-        System.out.println("CHIP-8");
+        String filename = "roms/input.ch8"; // Not sure how we want to input file names with gradle
+        Registers registers = new Registers();
+        Memory memory = new Memory(new File(filename), registers);
+        Display display = new Display();
+        Buffer fetchBuffer = new Buffer();
+        FetchDecode fetchDecode = new FetchDecode(memory, registers, fetchBuffer);
+        ExecuteWriteback executeWriteback = new ExecuteWriteback(memory, registers, fetchBuffer, display);
 
-        byte[] sp = new byte[9];
-        sp[0] = 0x3C;
-        sp[1] = 0x42;
-        sp[2] = (byte) 0x81;
-        sp[3] = (byte) 0xA5;
-        sp[4] = (byte) 0x81;
-        sp[5] = (byte) 0xA5;
-        sp[6] = (byte) 0x99;
-        sp[7] = 0x42;
-        sp[8] = 0x3C;
-
-        Display d = new Display();
-        d.drawSprite(sp, 0, 0);
+        for (;;) {
+            fetchDecode.clock();
+            executeWriteback.clock();
+        }
     }
 }

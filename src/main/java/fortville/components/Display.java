@@ -47,7 +47,7 @@ public class Display {
 
     public byte drawSprite(byte[] sprite, int x, int y) {
 
-        int collision = 0;
+        byte collision = 0;
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < 8; j++) {
                 if (collision == 0) {
@@ -66,10 +66,11 @@ public class Display {
     }
 
     public void clear() {
-        for (int i=0; i<64; i++)
-            for (int j=0; j<32; j++)
+        for (int i = 0; i < 64; i++) {
+            for (int j = 0; j < 32; j++) {
                 setPixels[i][j] = 0;
-        
+            }     
+        }
         panel.repaint();        
     }
 

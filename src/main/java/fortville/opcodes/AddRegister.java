@@ -23,7 +23,6 @@ public class AddRegister implements Opcode {
         int VX = (registers.loadRegister(data1) & 0xff);
         int VY = (registers.loadRegister(data2) & 0xff);
         int sum = VX + VY;
-
         if (sum >= 256) {
             registers.storeRegister((short)15, (byte)1);
             sum -= 256;
