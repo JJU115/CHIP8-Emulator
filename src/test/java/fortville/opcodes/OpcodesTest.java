@@ -48,6 +48,7 @@ public class OpcodesTest {
         short regV1 = 1;
         short addrI = 0x200;
 
+        // Given
         registers.storeI(addrI);
         registers.storeRegister(regV1, testValue);
 
@@ -55,9 +56,11 @@ public class OpcodesTest {
         assertNotEquals(memory.load(addrI + 1), 3);
         assertNotEquals(memory.load(addrI + 2), 5);
 
+        // When
         StoreBCDToMemory op = new StoreBCDToMemory();
         op.execute(regV1, zero, zero, memory, display, registers);
 
+        // Then
         assertEquals(memory.load(addrI), 0);
         assertEquals(memory.load(addrI + 1), 3);
         assertEquals(memory.load(addrI + 2), 5);
@@ -69,6 +72,7 @@ public class OpcodesTest {
         short regV1 = 1;
         short addrI = 0x200;
 
+        // Given
         registers.storeI(addrI);
         registers.storeRegister(regV1, testValue);
 
@@ -76,9 +80,11 @@ public class OpcodesTest {
         assertNotEquals(memory.load(addrI + 1), 4);
         assertNotEquals(memory.load(addrI + 2), 1);
 
+        // When
         StoreBCDToMemory op = new StoreBCDToMemory();
         op.execute(regV1, zero, zero, memory, display, registers);
 
+        // Then
         assertEquals(memory.load(addrI), 2);
         assertEquals(memory.load(addrI + 1), 4);
         assertEquals(memory.load(addrI + 2), 1);
