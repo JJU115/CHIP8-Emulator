@@ -8,7 +8,7 @@ import fortville.components.Memory;
 import fortville.components.Registers;
 
 public class CHIP8 {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         String filename = "input.ch8";  // XXX Need default rom
 
@@ -24,12 +24,8 @@ public class CHIP8 {
         ExecuteWriteback executeWriteback = new ExecuteWriteback(memory, registers,
             fetchBuffer, display);
 
-        for (;;) {
-            //System.out.println("Clock");
-            fetchDecode.clock();
-            executeWriteback.clock();
-            registers.deincrementTimers();
-            Thread.sleep(1);
-        }
+
+        fetchDecode.start();
+        executeWriteback.start();
     }
 }
