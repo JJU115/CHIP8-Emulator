@@ -5,7 +5,7 @@ import fortville.interfaces.Opcode;
 /**
  * ExecuteWriteback
  */
-public class ExecuteWriteback {
+public class ExecuteWriteback implements Runnable {
 
     Memory memory;
     Registers registers;
@@ -21,11 +21,27 @@ public class ExecuteWriteback {
         this.display = display;
     }
 
+    public void run() {
+        while (true) {
+            while (!fetchDecodeBuffer.isFull()) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    System.out.println("ERROR: Execute/Writeback Interruption");
+                    System.exit(-1);
+                }    
+            } 
+            System.out.println("Execute/Writeback"); 
+            clock();
+        }     
+    }
+
     public void clock() {
         Opcode opcode = fetchDecodeBuffer.getOpcode();
         short data1 = fetchDecodeBuffer.getData1();
         short data2 = fetchDecodeBuffer.getData2();
         short data3 = fetchDecodeBuffer.getData3();
+        fetchDecodeBuffer.setFull(false);
         opcode.execute(data1, data2, data3, memory, display, registers);
     }
 }
