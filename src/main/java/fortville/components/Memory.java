@@ -14,7 +14,6 @@ import java.io.InputStream;
 
 public class Memory {
     private byte[] memory;
-    private byte dataResult;
     private int targetAddress;
     Registers registers;
 
@@ -138,9 +137,5 @@ public class Memory {
 
     public void setAddress(int addr) {
         targetAddress = addr;
-    }
-
-    public int read(int output) {
-        return dataResult;
     }
 }
