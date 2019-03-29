@@ -10,6 +10,7 @@ public class Buffer {
     short data1;
     short data2;
     short data3;
+    boolean full;
 
     public Buffer() {
         data1 = 0;
@@ -71,5 +72,19 @@ public class Buffer {
      */
     public Opcode getOpcode() {
         return opcode;
+    }
+    
+    /**
+     * @return the full
+     */
+    public boolean isFull() {
+        return full;
+    }
+    
+    /**
+     * @param t the value to set full to
+     */
+    public void setFull(boolean t) {
+        full = t;
     }
 }
