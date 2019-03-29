@@ -40,7 +40,7 @@ import fortville.opcodes.XORRegister;
 /**
  * FetchDecode
  */
-public class FetchDecode {
+public class FetchDecode implements Runnable {
 
     Memory memory;
     Registers registers;
@@ -50,6 +50,22 @@ public class FetchDecode {
         this.memory = memory;
         this.registers = registers;
         this.fetchDecodeBuffer = fetchBuffer;
+    }
+    
+    public void run() {
+        while (true) {
+            while (fetchDecodeBuffer.isFull()) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    System.out.println("ERROR: Fetch/Decode Interruption");
+                    System.exit(-1);
+                }    
+            }
+            System.out.println("Fetch/Decode");  
+            clock();
+            registers.deincrementTimers();
+        }      
     }
 
     public void clock() {
@@ -241,6 +257,7 @@ public class FetchDecode {
         default:
             // XXX Error handling.
         }
+        fetchDecodeBuffer.setFull(true);
         registers.incrementPC();
     }
 }
