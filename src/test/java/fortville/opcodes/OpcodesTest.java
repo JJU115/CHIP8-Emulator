@@ -9,6 +9,7 @@ import fortville.components.Memory;
 import fortville.components.Registers;
 import fortville.opcodes.StoreBCDToMemory;
 
+import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -125,6 +126,58 @@ public class OpcodesTest {
         // Then
         for (short regNum = 0; regNum <= regVX; regNum++) {
             assertEquals(registers.loadRegister(regNum), memory.load(addrI + regNum));
+        }
+    }
+
+    @Test
+    public void testVectorStoreRegister_V0() {
+        byte initValue = 42;
+        byte testValue;
+        short regVX = 0;
+        short addrI = 0x200;
+
+        // Given
+        registers.storeI(addrI); // Set register I to addrI.
+        registers.storeRegister(regVX, initValue); // Store init value.
+        testValue = memory.load(registers.loadI()); // Save value from [addrI].
+
+        assertEquals(registers.loadRegister(regVX), initValue);
+        assertEquals(memory.load(registers.loadI()), testValue);
+
+        // When
+        VectorStoreRegister op = new VectorStoreRegister();
+        op.execute(regVX, zero, zero, memory, display, registers);
+
+        // Then
+        assertNotEquals(memory.load(registers.loadI()), testValue);
+        assertEquals(memory.load(registers.loadI()), initValue);
+    }
+
+    @Test
+    public void testVectorStoreRegister_V4() {
+        byte initValue = 42;
+        short regVX = 4;
+        short addrI = 0x200;
+
+        // Given
+        registers.storeI(addrI); // Set register I to addrI.
+        for (short regNum = 0; regNum <= regVX; regNum++) {
+            memory.store(initValue, addrI + regNum); // Store init values to memory.
+            registers.storeRegister(regNum, (byte)(new Random().nextInt() & 0xFF));
+        }
+
+        for (short regNum = 0; regNum <= regVX; regNum++) { // Check init values.
+            assertEquals(memory.load(addrI + regNum), initValue);
+            assertNotEquals(memory.load(addrI + regNum), registers.loadRegister(regNum));
+        }
+
+        // When
+        VectorStoreRegister op = new VectorStoreRegister();
+        op.execute(regVX, zero, zero, memory, display, registers);
+
+        // Then
+        for (short regNum = 0; regNum <= regVX; regNum++) {
+            assertEquals(memory.load(addrI + regNum), registers.loadRegister(regNum));
         }
     }
 }
