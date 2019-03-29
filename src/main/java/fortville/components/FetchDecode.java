@@ -129,7 +129,6 @@ public class FetchDecode {
                 fetchDecodeBuffer.setData2((short)((opcode & 0x00F0) >> 4));
                 break;
             case 4:
-                System.out.println("Adding reg");
                 fetchDecodeBuffer.setOpcode(new AddRegister());
                 fetchDecodeBuffer.setData1((short)((opcode & 0x0F00) >> 8));
                 fetchDecodeBuffer.setData2((short)((opcode & 0x00F0) >> 4));

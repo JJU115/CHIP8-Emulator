@@ -7,6 +7,7 @@ public class Display {
 
     private JFrame display;
     private DrawPanel panel;
+    private Keyboard keyboard;
     private int[][] setPixels;
 
     class DrawPanel extends JPanel {
@@ -31,7 +32,9 @@ public class Display {
         display = new JFrame("CHIP-8");
         setPixels = new int[64][32];
         panel = new DrawPanel();
+        keyboard = new Keyboard();
 
+        display.addKeyListener(keyboard);
         display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display.setSize(new Dimension(1290, 680));
         display.setLocation(610, 290);
@@ -72,6 +75,14 @@ public class Display {
             }
         }
         panel.repaint();
+    }
+
+    public boolean[] getKeys(){
+        return keyboard.getKeys();
+    }
+
+    public byte waitForKey(){
+        return keyboard.waitForKey();
     }
 
 
