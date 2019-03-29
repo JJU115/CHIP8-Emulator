@@ -28,8 +28,5 @@ public class SubRegister implements Opcode {
 
         VX = ((VX - VY) & 0xff);
         registers.storeRegister(data1, (byte)VX);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

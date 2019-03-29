@@ -24,8 +24,5 @@ public class XORRegister implements Opcode {
          */
         registers.storeRegister(data1,
             (byte)((registers.loadRegister(data1)) ^ (registers.loadRegister(data2))));
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

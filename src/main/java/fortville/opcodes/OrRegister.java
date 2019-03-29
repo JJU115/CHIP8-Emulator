@@ -23,8 +23,5 @@ public class OrRegister implements Opcode {
          */
         int result = (registers.loadRegister(data1) | registers.loadRegister(data2));
         registers.storeRegister(data1, (byte)result);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

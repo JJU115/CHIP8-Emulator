@@ -18,8 +18,5 @@ public class SetRegisterToRegister implements Opcode {
          * Stores the value of register Vy in register Vx.
          */
         registers.storeRegister(data1, registers.loadRegister(data2));
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

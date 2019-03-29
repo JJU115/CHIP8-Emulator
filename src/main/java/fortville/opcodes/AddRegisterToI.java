@@ -29,8 +29,5 @@ public class AddRegisterToI implements Opcode {
 
         sum = (sum & 0xfff);
         registers.storeI((short)sum);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

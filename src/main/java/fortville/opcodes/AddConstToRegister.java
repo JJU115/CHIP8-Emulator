@@ -26,8 +26,5 @@ public class AddConstToRegister implements Opcode {
             sum -= 256;
         }
         registers.storeRegister(data1, (byte)sum);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

@@ -18,8 +18,5 @@ public class SetSoundTimer implements Opcode {
          * ST is set equal to the value of Vx.
          */
         registers.setSoundTimer(registers.loadRegister(data1));
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

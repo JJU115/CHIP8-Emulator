@@ -25,8 +25,5 @@ public class AndRegister implements Opcode {
         byte VY = registers.loadRegister(data2);
         int result = (VX & VY);
         registers.storeRegister(data1, (byte)result);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

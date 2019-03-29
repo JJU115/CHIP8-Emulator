@@ -241,5 +241,6 @@ public class FetchDecode {
         default:
             // XXX Error handling.
         }
+        registers.incrementPC();
     }
 }

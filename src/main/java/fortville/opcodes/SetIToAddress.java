@@ -18,8 +18,5 @@ public class SetIToAddress implements Opcode {
          * The value of register I is set to nnn.
          */
         registers.storeI(data1);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

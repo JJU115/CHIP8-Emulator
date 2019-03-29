@@ -30,8 +30,5 @@ public class AddRegister implements Opcode {
             registers.storeRegister((short)15, (byte)0);
         }
         registers.storeRegister(data1, (byte)sum);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

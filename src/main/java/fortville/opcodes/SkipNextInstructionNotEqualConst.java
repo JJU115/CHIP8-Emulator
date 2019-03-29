@@ -23,8 +23,5 @@ public class SkipNextInstructionNotEqualConst implements Opcode {
         if (a != b) {
             registers.incrementPC();
         }
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

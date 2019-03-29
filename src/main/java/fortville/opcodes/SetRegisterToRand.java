@@ -24,8 +24,5 @@ public class SetRegisterToRand implements Opcode {
          */
         Random rand = new Random();
         registers.storeRegister(data1, (byte)((rand.nextInt(256)) & data2));
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

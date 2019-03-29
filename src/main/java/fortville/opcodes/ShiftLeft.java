@@ -27,8 +27,5 @@ public class ShiftLeft implements Opcode {
         }
         value = value << 1;
         registers.storeRegister(data1, (byte)value);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

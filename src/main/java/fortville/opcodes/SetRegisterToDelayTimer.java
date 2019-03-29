@@ -18,8 +18,5 @@ public class SetRegisterToDelayTimer implements Opcode {
          * The value of DT is placed into Vx.
          */
         registers.storeRegister(data1, registers.getDelayTimer());
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

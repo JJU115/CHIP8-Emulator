@@ -18,8 +18,5 @@ public class SetRegisterEqualConst implements Opcode {
          * The interpreter puts the value kk into register Vx.
          */
         registers.storeRegister(data1, (byte)data2);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }

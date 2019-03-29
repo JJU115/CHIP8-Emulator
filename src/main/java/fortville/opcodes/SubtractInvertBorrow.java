@@ -28,8 +28,5 @@ public class SubtractInvertBorrow implements Opcode {
 
         VX = ((VY - VX) & 0xff);
         registers.storeRegister(data1, (byte)VX);
-
-        // XXX Do we want incrementPC in opcode execution?
-        registers.incrementPC();
     }
 }
