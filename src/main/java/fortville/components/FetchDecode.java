@@ -176,6 +176,7 @@ public class FetchDecode {
             fetchDecodeBuffer.setData2((short)(opcode & 0x00FF));
             break;
         case 0xD:
+            System.out.println("Draw");
             fetchDecodeBuffer.setOpcode(new Draw());
             fetchDecodeBuffer.setData1((short)((opcode & 0x0F00) >> 8));
             fetchDecodeBuffer.setData2((short)((opcode & 0x00F0) >> 4));

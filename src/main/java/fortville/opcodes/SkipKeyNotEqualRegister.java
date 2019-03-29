@@ -13,7 +13,7 @@ public class SkipKeyNotEqualRegister implements Opcode {
     public void execute(short data1, short data2, short data3,
         Memory memory, Display display, Registers registers) {
 
-        if(!display.getKeys()[data1]){
+        if(!display.getKeys()[registers.loadRegister(data1)]){
             registers.incrementPC();
         }
     }

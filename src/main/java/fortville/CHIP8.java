@@ -25,10 +25,11 @@ public class CHIP8 {
             fetchBuffer, display);
 
         for (;;) {
-            System.out.println("Clock");
+            //System.out.println("Clock");
             fetchDecode.clock();
             executeWriteback.clock();
             registers.deincrementTimers();
+            Thread.sleep(1);
         }
     }
 }

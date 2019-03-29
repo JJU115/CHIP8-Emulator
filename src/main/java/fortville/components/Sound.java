@@ -29,6 +29,6 @@ public class Sound implements Runnable {
 
     @Override
     public void run() {
-        tone(400, 1000, 1.0);
+        tone(400, 1, 1.0);
     }
 }

@@ -128,7 +128,7 @@ public class Memory {
     public short loadInstruction() {
         short instruction = memory[registers.getPC()];
         instruction <<= 8;
-        instruction |= memory[registers.getPC() + 1];
+        instruction |= (memory[registers.getPC() + 1] & 0xFF);
         return instruction;
     }
 

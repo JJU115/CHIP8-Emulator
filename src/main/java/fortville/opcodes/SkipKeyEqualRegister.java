@@ -17,7 +17,8 @@ public class SkipKeyEqualRegister implements Opcode {
          * Checks the keyboard, and if the key corresponding to the value
          * of Vx is currently in the down position, PC is increased by 2.
          */
-        if(display.getKeys()[data1]){
+        
+        if(display.getKeys()[registers.loadRegister(data1)]){
             registers.incrementPC();
         }
     }
