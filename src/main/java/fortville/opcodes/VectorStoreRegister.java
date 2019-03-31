@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class VectorStoreRegister implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * Fx55 - LD [I], Vx
@@ -18,11 +18,11 @@ public class VectorStoreRegister implements Opcode {
          * The interpreter copies the values of registers V0 through Vx
          * into memory, starting at the address in I.
          */
-        short VX = data1;
-        short addrOfI = registers.loadI(); // Get memory address from I.
+        int VX = data1;
+        int addrOfI = registers.loadI();
 
-        for (short regNum = 0; regNum <= VX; regNum++) {
-            byte data = registers.loadRegister(regNum);
+        for (int regNum = 0; regNum <= VX; regNum++) {
+            int data = registers.loadRegister(regNum);
             memory.store(data, addrOfI + regNum);
         }
     }

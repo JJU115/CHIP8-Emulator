@@ -7,9 +7,9 @@ import fortville.interfaces.Opcode;
  */
 public class Buffer {
     Opcode opcode;
-    short data1;
-    short data2;
-    short data3;
+    int data1;
+    int data2;
+    int data3;
 
     public Buffer() {
         data1 = 0;
@@ -20,21 +20,21 @@ public class Buffer {
     /**
      * @param data1 the data1 to set
      */
-    public void setData1(short data1) {
+    public void setData1(int data1) {
         this.data1 = data1;
     }
 
     /**
      * @param data2 the data2 to set
      */
-    public void setData2(short data2) {
+    public void setData2(int data2) {
         this.data2 = data2;
     }
 
     /**
      * @param data3 the data3 to set
      */
-    public void setData3(short data3) {
+    public void setData3(int data3) {
         this.data3 = data3;
     }
 
@@ -48,21 +48,21 @@ public class Buffer {
     /**
      * @return the data1
      */
-    public short getData1() {
+    public int getData1() {
         return data1;
     }
 
     /**
      * @return the data2
      */
-    public short getData2() {
+    public int getData2() {
         return data2;
     }
 
     /**
      * @return the data3
      */
-    public short getData3() {
+    public int getData3() {
         return data3;
     }
 

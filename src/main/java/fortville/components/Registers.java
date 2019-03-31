@@ -2,16 +2,17 @@ package fortville.components;
 
 public class Registers {
 
-    private short PC; // Program Counter
-    private byte SP; // Stack Pointer
-    private short I; // Generally used to store memory addresses
-    private byte delayTimer;
-    private byte soundTimer;
+    private int PC; // Program Counter - 16-bit but only 12 bits used
+    private int SP; // Stack Pointer - 8-bit
+    private int I; // Index Register - 16-bit but only 12 bits used
+    private int delayTimer; // 8-bit
+    private int soundTimer; // 8-bit
 
     // 16 8-bit registers (NOTE:V[15] reserved for flag)
-    private byte[] V = new byte[16];
+    private int[] V = new int[16];
 
-    private short[] Stack = new short[16]; // 16 16-bit stack locations
+    // 16 16-bit stack locations of return addresses (only 12 bits used)
+    private int[] Stack = new int[16];
 
     public Registers() {
         // Set PC and clear everything else
@@ -27,57 +28,63 @@ public class Registers {
     }
 
     // Indexed from 0-15
-    public void storeRegister(short regNum, byte data) {
-        V[regNum] = data;
+    public void storeRegister(int regNum, int data) {
+        // XXX Add assert that data is only 8-bits in size.
+        V[regNum] = data & 0xFF;
     }
 
-    public byte loadRegister(short regNum) {
+    public int loadRegister(int regNum) {
         return V[regNum];
     }
 
-    public void storeI(short data) {
-        I = data;
+    public void storeI(int data) {
+        // XXX Add assert that data is only 12-bits in size.
+        I = data & 0xFFF;
     }
 
-    public short loadI() {
+    public int loadI() {
         return I;
     }
 
-    public void storeStack(short data) {
-        Stack[SP] = data;
+    public void storeStack(int data) {
+        // XXX Add assert that data is only 12-bits in size.
+        Stack[SP] = data & 0xFFF;
         SP++;
     }
 
-    public short loadStack() {
+    public int loadStack() {
         SP--;
         return Stack[SP];
     }
 
-    public short getPC() {
-        return PC;
+    public void setPC(int data) {
+        // XXX Add assert that data is only 12-bits in size.
+        PC = data & 0xFFF;
     }
 
-    public void setPC(short setData) {
-        PC = setData;
+    public int getPC() {
+        return PC;
     }
 
     public void incrementPC() {
         PC += 2;
     }
 
-    public void setDelayTimer(byte data) {
-        delayTimer = data;
+    public void setDelayTimer(int data) {
+        // XXX Add assert that data is only 8-bits in size.
+        delayTimer = data & 0xFF;
     }
 
-    public byte getDelayTimer() {
+    public int getDelayTimer() {
         return delayTimer;
     }
 
-    public void setSoundTimer(byte data) {
-        soundTimer = data;
+    public void setSoundTimer(int data) {
+        // XXX Add assert that data is only 8-bits in size.
+        soundTimer = data & 0xFF;
     }
 
-    public byte getSoundTimer() {
+    public int getSoundTimer() {
         return soundTimer;
     }
 

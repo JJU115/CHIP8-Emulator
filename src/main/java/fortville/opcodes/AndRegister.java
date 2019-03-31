@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class AndRegister implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * 8xy2 - AND Vx, Vy
@@ -21,9 +21,9 @@ public class AndRegister implements Opcode {
          * and if both bits are 1, then the same bit in the result is also 1.
          * Otherwise, it is 0.
          */
-        byte VX = registers.loadRegister(data1);
-        byte VY = registers.loadRegister(data2);
-        int result = (VX & VY);
-        registers.storeRegister(data1, (byte)result);
+        int VX = registers.loadRegister(data1);
+        int VY = registers.loadRegister(data2);
+        int result = VX & VY;
+        registers.storeRegister(data1, result);
     }
 }

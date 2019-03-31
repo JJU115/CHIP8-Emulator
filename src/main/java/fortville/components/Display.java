@@ -48,9 +48,9 @@ public class Display {
         panel.repaint();
     }
 
-    public byte drawSprite(byte[] sprite, int x, int y) {
+    public int drawSprite(int[] sprite, int x, int y) {
 
-        byte collision = 0;
+        int collision = 0;
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < 8; j++) {
                 if (collision == 0) {
@@ -77,29 +77,11 @@ public class Display {
         panel.repaint();
     }
 
-    public boolean[] getKeys(){
+    public boolean[] getKeys() {
         return keyboard.getKeys();
     }
 
-    public byte waitForKey(){
+    public int waitForKey() {
         return keyboard.waitForKey();
-    }
-
-
-    // Main method for testing purposes only
-    public static void main(String[] args) {
-        byte[] sp = new byte[9];
-        sp[0] = 0x3C;
-        sp[1] = 0x42;
-        sp[2] = (byte)0x81;
-        sp[3] = (byte)0xA5;
-        sp[4] = (byte)0x81;
-        sp[5] = (byte)0xA5;
-        sp[6] = (byte)0x99;
-        sp[7] = 0x42;
-        sp[8] = 0x3C;
-
-        Display d = new Display();
-        d.drawSprite(sp, 0, 0);
     }
 }

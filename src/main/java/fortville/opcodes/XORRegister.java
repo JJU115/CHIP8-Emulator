@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class XORRegister implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * 8xy3 - XOR Vx, Vy
@@ -23,6 +23,6 @@ public class XORRegister implements Opcode {
          * Otherwise, it is 0.
          */
         registers.storeRegister(data1,
-            (byte)((registers.loadRegister(data1)) ^ (registers.loadRegister(data2))));
+            registers.loadRegister(data1) ^ registers.loadRegister(data2));
     }
 }

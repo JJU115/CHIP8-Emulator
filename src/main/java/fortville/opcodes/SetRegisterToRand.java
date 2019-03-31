@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class SetRegisterToRand implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * Cxkk - RND Vx, byte
@@ -23,6 +23,6 @@ public class SetRegisterToRand implements Opcode {
          * See instruction 8xy2 for more information on AND.
          */
         Random rand = new Random();
-        registers.storeRegister(data1, (byte)((rand.nextInt(256)) & data2));
+        registers.storeRegister(data1, rand.nextInt(256) & data2);
     }
 }

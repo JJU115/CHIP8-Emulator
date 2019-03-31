@@ -10,10 +10,10 @@ import fortville.interfaces.Opcode;
  */
 public class SkipKeyNotEqualRegister implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
 
-        if(!display.getKeys()[registers.loadRegister(data1)]){
+        if (!display.getKeys()[registers.loadRegister(data1)]) {
             registers.incrementPC();
         }
     }

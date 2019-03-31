@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class StoreBCDToMemory implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * Fx33 - LD B, Vx
@@ -20,16 +20,15 @@ public class StoreBCDToMemory implements Opcode {
          * the tens digit at location I+1,
          * and the ones digit at location I+2.
          */
-        // Read value from Vx. It is in data1. Watch out for signed bytes.
-        int bcd = Byte.toUnsignedInt(registers.loadRegister(data1));
+        int bcd = registers.loadRegister(data1);
 
-        byte hundreds = (byte)(bcd / 100);
+        int hundreds = bcd / 100;
         bcd %= 100;
-        byte tens = (byte)(bcd / 10);
+        int tens = bcd / 10;
         bcd %= 10;
-        byte ones = (byte)bcd;
+        int ones = bcd;
 
-        short addrOfI = registers.loadI(); // Get memory address from I.
+        int addrOfI = registers.loadI();
         memory.store(hundreds, addrOfI);
         memory.store(tens, addrOfI + 1);
         memory.store(ones, addrOfI + 2);

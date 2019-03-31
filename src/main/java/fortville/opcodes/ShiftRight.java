@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class ShiftRight implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * 8xy6 - SHR Vx {, Vy}
@@ -21,11 +21,12 @@ public class ShiftRight implements Opcode {
          */
         int value = registers.loadRegister(data1);
         if ((value & 0x01) == 1) {
-            registers.storeRegister((short)15, (byte)1);
+            registers.storeRegister(15, 1);
         } else {
-            registers.storeRegister((short)15, (byte)0);
+            registers.storeRegister(15, 0);
         }
-        value = value >> 1;
-        registers.storeRegister(data1, (byte)value);
+        value >>= 1;
+        value &= 0xFF;
+        registers.storeRegister(data1, value);
     }
 }
