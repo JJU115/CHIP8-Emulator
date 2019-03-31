@@ -13,12 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Memory {
-    private int targetAddress;
-    Registers registers;
     private int[] memory;
 
     public Memory(String filename, Registers registers) {
-        this.registers = registers;
         byte[] byteMemory = new byte[4096]; // Temporary byte array for file reads.
         memory = new int[4096];
         BufferedInputStream fileReader;
@@ -130,10 +127,11 @@ public class Memory {
         return memory[address & 0xFFF];
     }
 
-    public int loadInstruction() {
-        int instruction = memory[registers.getPC()];
+    public int loadInstruction(int address) {
+        // XXX Add assertion that address is only 12-bits in size.
+        int instruction = memory[address & 0xFFF];
         instruction <<= 8;
-        instruction |= (memory[registers.getPC() + 1] & 0xFF);
+        instruction |= memory[(address + 1) & 0xFFF];
         instruction &= 0xFFFF; // Instructions are 16 bits.
         return instruction;
     }
@@ -142,9 +140,5 @@ public class Memory {
         // XXX Add assertion that data is only 8-bits in size.
         // XXX Add assertion that address is only 12-bits in size.
         memory[address & 0xFFF] = data & 0xFF;
-    }
-
-    public void setAddress(int addr) {
-        targetAddress = addr;
     }
 }

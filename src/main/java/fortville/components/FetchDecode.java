@@ -53,7 +53,7 @@ public class FetchDecode {
     }
 
     public void clock() {
-        int opcode = memory.loadInstruction();
+        int opcode = memory.loadInstruction(registers.getPC());
         int firstNum = (opcode & 0xF000) >> 12;
         int lastNum = opcode & 0x000F;
         if (opcode == 0) {
