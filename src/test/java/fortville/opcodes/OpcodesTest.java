@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class OpcodesTest {
 
-    private short zero;
+    private int zero;
 
     Registers registers;
     Memory memory;
@@ -33,9 +33,9 @@ public class OpcodesTest {
 
     @Test
     public void testStoreBCDToMemory_BigByte() {
-        byte testValue = (byte)241; // Big value, so could be negative if signed.
-        short regV1 = 1;
-        short addrI = 0x200;
+        int testValue = 241; // Big value, so could be negative if signed.
+        int regV1 = 1;
+        int addrI = 0x200;
 
         // Given
         registers.storeI(addrI);
@@ -57,9 +57,9 @@ public class OpcodesTest {
 
     @Test
     public void testStoreBCDToMemory_SmallByte() {
-        byte testValue = 35; // Small value, so always positive.
-        short regV1 = 1;
-        short addrI = 0x200;
+        int testValue = 35; // Small value, so always positive.
+        int regV1 = 1;
+        int addrI = 0x200;
 
         // Given
         registers.storeI(addrI);
@@ -81,10 +81,10 @@ public class OpcodesTest {
 
     @Test
     public void testVectorLoadRegister_V0() {
-        byte initValue = 42;
-        byte testValue;
-        short regVX = 0;
-        short addrI = 0x200;
+        int initValue = 42;
+        int testValue;
+        int regVX = 0;
+        int addrI = 0x200;
 
         // Given
         registers.storeI(addrI); // Set register I to addrI.
@@ -104,17 +104,17 @@ public class OpcodesTest {
 
     @Test
     public void testVectorLoadRegister_V4() {
-        byte initValue = 42;
-        short regVX = 4;
-        short addrI = 0x200;
+        int initValue = 42;
+        int regVX = 4;
+        int addrI = 0x200;
 
         // Given
         registers.storeI(addrI); // Set register I to addrI.
-        for (short regNum = 0; regNum <= regVX; regNum++) {
+        for (int regNum = 0; regNum <= regVX; regNum++) {
             registers.storeRegister(regNum, initValue); // Store init values.
         }
 
-        for (short regNum = 0; regNum <= regVX; regNum++) { // Check init values.
+        for (int regNum = 0; regNum <= regVX; regNum++) { // Check init values.
             assertEquals(registers.loadRegister(regNum), initValue);
             assertNotEquals(registers.loadRegister(regNum), memory.load(addrI + regNum));
         }
@@ -124,17 +124,17 @@ public class OpcodesTest {
         op.execute(regVX, zero, zero, memory, display, registers);
 
         // Then
-        for (short regNum = 0; regNum <= regVX; regNum++) {
+        for (int regNum = 0; regNum <= regVX; regNum++) {
             assertEquals(registers.loadRegister(regNum), memory.load(addrI + regNum));
         }
     }
 
     @Test
     public void testVectorStoreRegister_V0() {
-        byte initValue = 42;
-        byte testValue;
-        short regVX = 0;
-        short addrI = 0x200;
+        int initValue = 42;
+        int testValue;
+        int regVX = 0;
+        int addrI = 0x200;
 
         // Given
         registers.storeI(addrI); // Set register I to addrI.
@@ -155,18 +155,18 @@ public class OpcodesTest {
 
     @Test
     public void testVectorStoreRegister_V4() {
-        byte initValue = 42;
-        short regVX = 4;
-        short addrI = 0x200;
+        int initValue = 42;
+        int regVX = 4;
+        int addrI = 0x200;
 
         // Given
         registers.storeI(addrI); // Set register I to addrI.
-        for (short regNum = 0; regNum <= regVX; regNum++) {
+        for (int regNum = 0; regNum <= regVX; regNum++) {
             memory.store(initValue, addrI + regNum); // Store init values to memory.
-            registers.storeRegister(regNum, (byte)(new Random().nextInt() & 0xFF));
+            registers.storeRegister(regNum, new Random().nextInt(256));
         }
 
-        for (short regNum = 0; regNum <= regVX; regNum++) { // Check init values.
+        for (int regNum = 0; regNum <= regVX; regNum++) { // Check init values.
             assertEquals(memory.load(addrI + regNum), initValue);
             assertNotEquals(memory.load(addrI + regNum), registers.loadRegister(regNum));
         }
@@ -176,7 +176,7 @@ public class OpcodesTest {
         op.execute(regVX, zero, zero, memory, display, registers);
 
         // Then
-        for (short regNum = 0; regNum <= regVX; regNum++) {
+        for (int regNum = 0; regNum <= regVX; regNum++) {
             assertEquals(memory.load(addrI + regNum), registers.loadRegister(regNum));
         }
     }
