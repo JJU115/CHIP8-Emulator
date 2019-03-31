@@ -24,8 +24,10 @@ public class CHIP8 {
         ExecuteWriteback executeWriteback = new ExecuteWriteback(memory, registers,
             fetchBuffer, display);
 
+        Thread threadFetchDecode = new Thread(fetchDecode, "Fetch / Decode Thread");
+        Thread threadExecuteWriteback = new Thread(executeWriteback, "Execute / Writeback Thread");
 
-        fetchDecode.start();
-        executeWriteback.start();
+        threadFetchDecode.start();
+        threadExecuteWriteback.start();
     }
 }
