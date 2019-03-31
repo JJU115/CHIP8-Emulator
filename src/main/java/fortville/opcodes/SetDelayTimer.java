@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class SetDelayTimer implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * Fx15 - LD DT, Vx

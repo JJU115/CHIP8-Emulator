@@ -8,6 +8,6 @@ import fortville.components.Registers;
  * Opcode
  */
 public interface Opcode {
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers);
 }

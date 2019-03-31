@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class AddRegister implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * 8xy4 - ADD Vx, Vy
@@ -20,15 +20,16 @@ public class AddRegister implements Opcode {
          * VF is set to 1, otherwise 0.
          * Only the lowest 8 bits of the result are kept, and stored in Vx.
          */
-        int VX = (registers.loadRegister(data1) & 0xff);
-        int VY = (registers.loadRegister(data2) & 0xff);
+        int VX = registers.loadRegister(data1);
+        int VY = registers.loadRegister(data2);
         int sum = VX + VY;
-        if (sum >= 256) {
-            registers.storeRegister((short)15, (byte)1);
-            sum -= 256;
+        if (sum > 0xFF) {
+            registers.storeRegister(15, 1);
         } else {
-            registers.storeRegister((short)15, (byte)0);
+            registers.storeRegister(15, 0);
         }
-        registers.storeRegister(data1, (byte)sum);
+
+        sum &= 0xFF;
+        registers.storeRegister(data1, sum);
     }
 }

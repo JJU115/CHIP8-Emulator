@@ -10,17 +10,18 @@ import fortville.interfaces.Opcode;
  */
 public class SkipNextInstructionEqualConst implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * 3xkk - SE Vx, byte
          * Skip next instruction if Vx = kk.
          * The interpreter compares register Vx to kk,
-         * and if they are equal, increments the program counter by 2.
+         * and if they are equal,
+         * increments the program counter by 2.
          */
-        Byte a = registers.loadRegister(data1);
-        Byte b = (byte)data2;
-        if (a == b) {
+        int VX = registers.loadRegister(data1);
+        int kk = data2;
+        if (VX == kk) {
             registers.incrementPC();
         }
     }

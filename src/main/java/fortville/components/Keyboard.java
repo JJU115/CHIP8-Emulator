@@ -13,7 +13,7 @@ public class Keyboard extends KeyAdapter {
 
 	boolean[] keys = new boolean[16];
 	boolean keyDown = false;
-	byte lastKey;
+	int lastKey;
 
 	/**
 	 * @return the keys
@@ -22,7 +22,7 @@ public class Keyboard extends KeyAdapter {
 		return keys;
 	}
 
-	public byte waitForKey() {
+	public int waitForKey() {
 		keyDown = false;
 		while (!keyDown) {
 			try {

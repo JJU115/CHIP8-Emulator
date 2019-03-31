@@ -10,7 +10,7 @@ import fortville.interfaces.Opcode;
  */
 public class SkipNextInstructionEqualRegister implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
         /*
          * 5xy0 - SE Vx, Vy
@@ -18,9 +18,9 @@ public class SkipNextInstructionEqualRegister implements Opcode {
          * The interpreter compares register Vx to register Vy,
          * and if they are equal, increments the program counter by 2.
          */
-        Byte a = registers.loadRegister(data1);
-        Byte b = registers.loadRegister(data2);
-        if (a == b) {
+        int VX = registers.loadRegister(data1);
+        int VY = registers.loadRegister(data2);
+        if (VX == VY) {
             registers.incrementPC();
         }
     }

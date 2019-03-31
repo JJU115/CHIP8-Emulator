@@ -38,9 +38,9 @@ public class ExecuteWriteback implements Runnable {
 
     public void clock() {
         Opcode opcode = fetchDecodeBuffer.getOpcode();
-        short data1 = fetchDecodeBuffer.getData1();
-        short data2 = fetchDecodeBuffer.getData2();
-        short data3 = fetchDecodeBuffer.getData3();
+        int data1 = fetchDecodeBuffer.getData1();
+        int data2 = fetchDecodeBuffer.getData2();
+        int data3 = fetchDecodeBuffer.getData3();
         fetchDecodeBuffer.setFull(false);
         opcode.execute(data1, data2, data3, memory, display, registers);
     }

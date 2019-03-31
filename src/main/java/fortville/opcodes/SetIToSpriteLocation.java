@@ -12,9 +12,9 @@ import fortville.interfaces.Opcode;
  */
 public class SetIToSpriteLocation implements Opcode {
     @Override
-    public void execute(short data1, short data2, short data3,
+    public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
 
-        registers.storeI((short)(5 * registers.loadRegister(data1)));
+        registers.storeI((5 * registers.loadRegister(data1)) & 0xFFF);
     }
 }
