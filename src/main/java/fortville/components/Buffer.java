@@ -7,15 +7,49 @@ import fortville.interfaces.Opcode;
  */
 public class Buffer {
     Opcode opcode;
+    int prediction;
     int data1;
     int data2;
     int data3;
     boolean full;
+    boolean branch;
+    boolean valid;
 
     public Buffer() {
         data1 = 0;
         data2 = 0;
         data3 = 0;
+        prediction = 0;
+        branch = false;
+        valid = true;
+    }
+
+    /**
+     * @param valid the valid to set
+     */
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    /**
+     * @return the valid
+     */
+    public boolean isValid() {
+        return valid;
+    }
+    
+    /**
+     * @return the prediction
+     */
+    public int getPrediction() {
+        return prediction;
+    }
+
+    /**
+     * @param prediction the prediction to set
+     */
+    public void setPrediction(int prediction) {
+        this.prediction = prediction;
     }
 
     /**
@@ -86,5 +120,13 @@ public class Buffer {
      */
     public void setFull(boolean t) {
         full = t;
+    }
+
+    public void setBranch(boolean t){
+        branch = t;
+    }
+
+    public boolean isBranch(){
+        return branch;
     }
 }

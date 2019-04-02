@@ -36,16 +36,16 @@ import fortville.opcodes.VectorLoadRegister;
 import fortville.opcodes.VectorStoreRegister;
 import fortville.opcodes.WaitForKeyPress;
 import fortville.opcodes.XORRegister;
-
+import java.util.*;
 /**
  * FetchDecode
  */
 public class FetchDecode implements Runnable {
-
+    HashMap<Integer,Integer> branchMap = new HashMap<Integer,Integer>();
     Memory memory;
     Registers registers;
     Buffer fetchDecodeBuffer;
-
+    
     public FetchDecode(Memory memory, Registers registers, Buffer fetchBuffer) {
         this.memory = memory;
         this.registers = registers;
@@ -54,15 +54,14 @@ public class FetchDecode implements Runnable {
     
     public void run() {
         while (true) {
-            while (fetchDecodeBuffer.isFull()) {
+            while (fetchDecodeBuffer.isFull() || fetchDecodeBuffer.isBranch()) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(1);
                 } catch (InterruptedException e) {
                     System.out.println("ERROR: Fetch/Decode Interruption");
                     System.exit(-1);
                 }    
             }
-            System.out.println("Fetch/Decode");  
             clock();
             registers.deincrementTimers();
         }      
@@ -72,45 +71,49 @@ public class FetchDecode implements Runnable {
         int opcode = memory.loadInstruction(registers.getPC());
         int firstNum = (opcode & 0xF000) >> 12;
         int lastNum = opcode & 0x000F;
-        if (opcode == 0) {
-            // Tempory thing to end the program when it's done, will need to be changed
-            System.exit(0);
-        }
+        int lastBytes = (opcode & 0x00FF);
         switch (firstNum) {
         case 0:
-            switch (lastNum) {
-            case 0x0:
+            switch (lastBytes) {
+            case 0xE0:
                 fetchDecodeBuffer.setOpcode(new ClearDisplay());
                 break;
-            case 0xE:
+            case 0xEE:
                 fetchDecodeBuffer.setOpcode(new ReturnSubroutine());
+                fetchDecodeBuffer.setBranch(true);
                 break;
             default:
-                // XXX Error handling.
+                fetchDecodeBuffer.setOpcode(null);
+                break;
             }
             break;
         case 1:
             fetchDecodeBuffer.setOpcode(new JumpAddress());
             fetchDecodeBuffer.setData1(opcode & 0x0FFF);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 2:
             fetchDecodeBuffer.setOpcode(new CallAddress());
             fetchDecodeBuffer.setData1(opcode & 0x0FFF);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 3:
             fetchDecodeBuffer.setOpcode(new SkipNextInstructionEqualConst());
             fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
             fetchDecodeBuffer.setData2(opcode & 0x00FF);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 4:
             fetchDecodeBuffer.setOpcode(new SkipNextInstructionNotEqualConst());
             fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
             fetchDecodeBuffer.setData2(opcode & 0x00FF);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 5:
             fetchDecodeBuffer.setOpcode(new SkipNextInstructionEqualRegister());
             fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
             fetchDecodeBuffer.setData2((opcode & 0x00F0) >> 4);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 6:
             fetchDecodeBuffer.setOpcode(new SetRegisterEqualConst());
@@ -177,6 +180,7 @@ public class FetchDecode implements Runnable {
             fetchDecodeBuffer.setOpcode(new SkipNextInstructionRegNotEqual());
             fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
             fetchDecodeBuffer.setData2((opcode & 0x00F0) >> 4);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 0xA:
             fetchDecodeBuffer.setOpcode(new SetIToAddress());
@@ -185,6 +189,7 @@ public class FetchDecode implements Runnable {
         case 0xB:
             fetchDecodeBuffer.setOpcode(new JumpToAddressPlusRegister());
             fetchDecodeBuffer.setData1(opcode & 0x0FFF);
+            fetchDecodeBuffer.setBranch(true);
             break;
         case 0xC:
             fetchDecodeBuffer.setOpcode(new SetRegisterToRand());
@@ -202,17 +207,18 @@ public class FetchDecode implements Runnable {
             case 0x1:
                 fetchDecodeBuffer.setOpcode(new SkipKeyNotEqualRegister());
                 fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
+                fetchDecodeBuffer.setBranch(true);
                 break;
             case 0xE:
                 fetchDecodeBuffer.setOpcode(new SkipKeyEqualRegister());
                 fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
+                fetchDecodeBuffer.setBranch(true);
                 break;
             default:
                 // XXX Error handling.
             }
             break;
         case 0xF:
-            int lastBytes = (opcode & 0x00FF);
             switch (lastBytes) {
             case 0x07:
                 fetchDecodeBuffer.setOpcode(new SetRegisterToDelayTimer());

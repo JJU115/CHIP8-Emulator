@@ -64,7 +64,6 @@ public class Display {
                     ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j);
             }
         }
-
         return collision;
     }
 
