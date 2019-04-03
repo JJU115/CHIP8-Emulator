@@ -33,12 +33,16 @@ public class OpcodesTest {
 
     @Test
     public void testStoreBCDToMemory_BigByte() {
-        int testValue = 241; // Big value, so could be negative if signed.
+        int initValue = 42;
+        int testValue = 241; // Big value, so negative if signed byte.
         int regV1 = 1;
         int addrI = 0x200;
 
         // Given
         registers.storeI(addrI);
+        memory.store(initValue, addrI);
+        memory.store(initValue, addrI + 1);
+        memory.store(initValue, addrI + 2);
         registers.storeRegister(regV1, testValue);
 
         assertNotEquals(memory.load(addrI), 2);
@@ -57,12 +61,16 @@ public class OpcodesTest {
 
     @Test
     public void testStoreBCDToMemory_SmallByte() {
-        int testValue = 35; // Small value, so always positive.
+        int initValue = 42;
+        int testValue = 35; // Small value, so always positive byte.
         int regV1 = 1;
         int addrI = 0x200;
 
         // Given
         registers.storeI(addrI);
+        memory.store(initValue, addrI);
+        memory.store(initValue, addrI + 1);
+        memory.store(initValue, addrI + 2);
         registers.storeRegister(regV1, testValue);
 
         assertNotEquals(memory.load(addrI), 0);
