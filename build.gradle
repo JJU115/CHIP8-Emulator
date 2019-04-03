@@ -44,11 +44,21 @@ test {
 }
 
 def roms = [
+    breakout: 'breakout.ch8',
+    hidden: 'hidden.ch8',
     input: 'input.ch8',
-    pong_1: 'Pong (1 player).ch8'
+    invaders: 'invaders.ch8',
+    pong: 'pong.ch8',
+    tank: 'tank.ch8',
+    tetris: 'tetris.ch8',
 ]
 
 run {
+//    args = ["${roms.breakout}"]
+//    args = ["${roms.hidden}"]
 //    args = ["${roms.input}"]
-    args = ["${roms.pong_1}"]
+//    args = ["${roms.invaders}"]
+    args = ["${roms.pong}"]
+//    args = ["${roms.tank}"]
+//    args = ["${roms.tetris}"]
 }
