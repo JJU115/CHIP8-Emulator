@@ -54,17 +54,19 @@ public class Display {
     public int drawSprite(int[] sprite, int x, int y) {
 
         int collision = 0;
+        int num;
+
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < 8; j++) {
+                num = ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j;
+
                 if (collision == 0) {
-                    if ((setPixels[(x + j) % 64][(y + i) % 32]
-                          & ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j) > 0) {
+                    if ((setPixels[(x + j) % 64][(y + i) % 32] & num) > 0) {
                         collision = 1;
                     }
                 }
 
-                setPixel((x + j) % 64, (y + i) % 32,
-                    ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j);
+                setPixel((x + j) % 64, (y + i) % 32, num);
             }
         }
         return collision;
