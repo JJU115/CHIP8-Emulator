@@ -48,11 +48,11 @@ public class Memory {
          * area of memory (0x000 - 0x1FF).
          * The start of each byte for digit n will be at memory[n * 5].
          */
-    
+
         //0
         memory[0] = memory[4] = 0xF0;
         memory[1] = memory[2] = memory[3] = 0x90;
-        
+
         //1
         memory[5] = memory[7] = memory[8] = 0x20;
         memory[6] = 0x60;

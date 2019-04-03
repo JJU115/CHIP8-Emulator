@@ -29,16 +29,15 @@ public class ExecuteWriteback implements Runnable {
                 } catch (InterruptedException e) {
                     System.out.println("ERROR: Execute/Writeback Interruption");
                     System.exit(-1);
-                }    
-            } 
-            //System.out.println("Execute/Writeback"); 
+                }
+            }
             clock();
-        }     
+        }
     }
 
     public void clock() {
         Opcode opcode = fetchDecodeBuffer.getOpcode();
-        if(opcode == null){
+        if (opcode == null) {
             System.exit(0);
         }
         int data1 = fetchDecodeBuffer.getData1();

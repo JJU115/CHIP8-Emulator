@@ -1,6 +1,8 @@
 package fortville.components;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.SourceDataLine;
 
 public class Sound implements Runnable {
 
@@ -24,7 +26,7 @@ public class Sound implements Runnable {
         } catch (Exception e) {
             System.out.println("Tone output not found");
             //TODO: Error handling
-        }     
+        }
     }
 
     @Override

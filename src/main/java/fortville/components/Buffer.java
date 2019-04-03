@@ -37,7 +37,7 @@ public class Buffer {
     public boolean isValid() {
         return valid;
     }
-    
+
     /**
      * @return the prediction
      */
@@ -107,14 +107,14 @@ public class Buffer {
     public Opcode getOpcode() {
         return opcode;
     }
-    
+
     /**
      * @return the full
      */
     public boolean isFull() {
         return full;
     }
-    
+
     /**
      * @param t the value to set full to
      */
@@ -122,11 +122,11 @@ public class Buffer {
         full = t;
     }
 
-    public void setBranch(boolean t){
+    public void setBranch(boolean t) {
         branch = t;
     }
 
-    public boolean isBranch(){
+    public boolean isBranch() {
         return branch;
     }
 }

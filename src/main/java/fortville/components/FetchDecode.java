@@ -36,22 +36,24 @@ import fortville.opcodes.VectorLoadRegister;
 import fortville.opcodes.VectorStoreRegister;
 import fortville.opcodes.WaitForKeyPress;
 import fortville.opcodes.XORRegister;
-import java.util.*;
+
+import java.util.HashMap;
+
 /**
  * FetchDecode
  */
 public class FetchDecode implements Runnable {
-    HashMap<Integer,Integer> branchMap = new HashMap<Integer,Integer>();
+    HashMap<Integer, Integer> branchMap = new HashMap<>();
     Memory memory;
     Registers registers;
     Buffer fetchDecodeBuffer;
-    
+
     public FetchDecode(Memory memory, Registers registers, Buffer fetchBuffer) {
         this.memory = memory;
         this.registers = registers;
         this.fetchDecodeBuffer = fetchBuffer;
     }
-    
+
     public void run() {
         while (true) {
             while (fetchDecodeBuffer.isFull() || fetchDecodeBuffer.isBranch()) {
@@ -60,18 +62,19 @@ public class FetchDecode implements Runnable {
                 } catch (InterruptedException e) {
                     System.out.println("ERROR: Fetch/Decode Interruption");
                     System.exit(-1);
-                }    
+                }
             }
             clock();
             registers.deincrementTimers();
-        }      
+        }
     }
 
     public void clock() {
         int opcode = memory.loadInstruction(registers.getPC());
         int firstNum = (opcode & 0xF000) >> 12;
         int lastNum = opcode & 0x000F;
-        int lastBytes = (opcode & 0x00FF);
+        int lastBytes = opcode & 0x00FF;
+
         switch (firstNum) {
         case 0:
             switch (lastBytes) {
