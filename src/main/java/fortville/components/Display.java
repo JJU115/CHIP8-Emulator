@@ -69,7 +69,7 @@ public class Display {
                 setPixels[xco][yco] ^= num;
             }
         }
-        
+
         panel.repaint();
         return collision;
     }

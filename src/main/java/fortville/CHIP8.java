@@ -10,10 +10,10 @@ import fortville.components.Registers;
 public class CHIP8 {
     public static void main(String[] args) {
 
-        String filename = "input.ch8";  // XXX Need default rom
+        String filename = "pong.ch8";
 
         if (args.length == 1) {
-            filename = args[0];         // Command line rom filename
+            filename = args[0]; // Command line rom filename
         }
 
         Registers registers = new Registers();
