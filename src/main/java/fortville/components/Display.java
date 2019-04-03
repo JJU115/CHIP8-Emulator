@@ -40,35 +40,37 @@ public class Display {
         display.addKeyListener(keyboard);
         display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display.setSize(new Dimension(1290, 680));
-        display.setLocation(610, 290);
+        display.setLocation(0, 0);
         display.setResizable(false);
         display.add(panel);
         display.setVisible(true);
     }
 
-    public void setPixel(int x, int y, int p) {
-        setPixels[x][y] = setPixels[x][y] ^ p;
-        panel.repaint();
-    }
 
     public int drawSprite(int[] sprite, int x, int y) {
 
         int collision = 0;
         int num;
+        int xco;
+        int yco;
 
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 0; j < 8; j++) {
                 num = ((int)Math.pow(2, 7 - j) & sprite[i]) >> 7 - j;
+                xco = (x + j) % 64;
+                yco = (y + i) % 32;
 
                 if (collision == 0) {
-                    if ((setPixels[(x + j) % 64][(y + i) % 32] & num) > 0) {
+                    if ((setPixels[xco][yco] & num) > 0) {
                         collision = 1;
                     }
                 }
 
-                setPixel((x + j) % 64, (y + i) % 32, num);
+                setPixels[xco][yco] ^= num;
             }
         }
+        
+        panel.repaint();
         return collision;
     }
 
