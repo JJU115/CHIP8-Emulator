@@ -26,8 +26,17 @@ public class Memory {
             } else {
                 fileReader = new BufferedInputStream(new FileInputStream(filename));
             }
-            int read = fileReader.read(byteMemory, 0x200, 3583);
-            System.out.println("Read " + read + " bytes from " + filename);
+
+            int read = 0;
+            try {
+                read = fileReader.read(byteMemory, 0x200, 3583);
+            } catch (IOException e) {
+                System.err.println("ERROR: an I/O error occurred in file read.");
+                System.exit(-1);
+            } finally {
+                fileReader.close();
+                System.out.println("Read " + read + " bytes from " + filename);
+            }
         } catch (FileNotFoundException e) {
             System.err.println("ERROR: The input file could not be found.");
             System.exit(-1);
