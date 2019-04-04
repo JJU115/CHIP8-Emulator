@@ -23,7 +23,7 @@ public class AddRegisterToI implements Opcode {
          */
         int sum = registers.loadI() + registers.loadRegister(data1);
 
-        // XXX Set overflow flag if overflow
+        // Set overflow flag if overflow.
         if (sum > 0xFFF) {
             registers.storeRegister(15, 1);
         } else {

@@ -132,22 +132,25 @@ public class Memory {
     }
 
     public int load(int address) {
-        // XXX Add assertion that address is only 12-bits in size.
-        return memory[address & 0xFFF];
+        assert address >= 0 && address <= 0xFFF;
+
+        return memory[address];
     }
 
     public int loadInstruction(int address) {
-        // XXX Add assertion that address is only 12-bits in size.
-        int instruction = memory[address & 0xFFF];
+        assert address >= 0 && address <= 0xFFF;
+
+        int instruction = memory[address];
         instruction <<= 8;
-        instruction |= memory[(address + 1) & 0xFFF];
+        instruction |= memory[address + 1];
         instruction &= 0xFFFF; // Instructions are 16 bits.
         return instruction;
     }
 
     public void store(int data, int address) {
-        // XXX Add assertion that data is only 8-bits in size.
-        // XXX Add assertion that address is only 12-bits in size.
-        memory[address & 0xFFF] = data & 0xFF;
+        assert data >= 0 && data <= 0xFF;
+        assert address >= 0 && address <= 0xFFF;
+
+        memory[address] = data;
     }
 }

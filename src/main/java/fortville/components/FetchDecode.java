@@ -176,7 +176,7 @@ public class FetchDecode implements Runnable {
                 fetchDecodeBuffer.setData2((opcode & 0x00F0) >> 4);
                 break;
             default:
-                // XXX Error handling.
+                assert false;
             }
             break;
         case 9:
@@ -218,7 +218,7 @@ public class FetchDecode implements Runnable {
                 fetchDecodeBuffer.setBranch(true);
                 break;
             default:
-                // XXX Error handling.
+                assert false;
             }
             break;
         case 0xF:
@@ -260,11 +260,11 @@ public class FetchDecode implements Runnable {
                 fetchDecodeBuffer.setData1((opcode & 0x0F00) >> 8);
                 break;
             default:
-                // XXX Error handling.
+                assert false;
             }
             break;
         default:
-            // XXX Error handling.
+            assert false;
         }
         fetchDecodeBuffer.setFull(true);
         registers.incrementPC();

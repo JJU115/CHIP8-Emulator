@@ -29,17 +29,22 @@ public class Registers {
 
     // Indexed from 0-15
     public void storeRegister(int regNum, int data) {
-        // XXX Add assert that data is only 8-bits in size.
-        V[regNum] = data & 0xFF;
+        assert regNum >= 0 && regNum <= 15;
+        assert data >= 0 && data <= 0xFF;
+
+        V[regNum] = data;
     }
 
     public int loadRegister(int regNum) {
+        assert regNum >= 0 && regNum <= 15;
+
         return V[regNum];
     }
 
     public void storeI(int data) {
-        // XXX Add assert that data is only 12-bits in size.
-        I = data & 0xFFF;
+        assert data >= 0 && data <= 0xFFF;
+
+        I = data;
     }
 
     public int loadI() {
@@ -47,8 +52,9 @@ public class Registers {
     }
 
     public void storeStack(int data) {
-        // XXX Add assert that data is only 12-bits in size.
-        Stack[SP] = data & 0xFFF;
+        assert data >= 0 && data <= 0xFFF;
+
+        Stack[SP] = data;
         SP++;
     }
 
@@ -58,8 +64,9 @@ public class Registers {
     }
 
     public void setPC(int data) {
-        // XXX Add assert that data is only 12-bits in size.
-        PC = data & 0xFFF;
+        assert data >= 0 && data <= 0xFFF;
+
+        PC = data;
     }
 
     public int getPC() {
@@ -71,8 +78,9 @@ public class Registers {
     }
 
     public void setDelayTimer(int data) {
-        // XXX Add assert that data is only 8-bits in size.
-        delayTimer = data & 0xFF;
+        assert data >= 0 && data <= 0xFF;
+
+        delayTimer = data;
     }
 
     public int getDelayTimer() {
@@ -80,8 +88,9 @@ public class Registers {
     }
 
     public void setSoundTimer(int data) {
-        // XXX Add assert that data is only 8-bits in size.
-        soundTimer = data & 0xFF;
+        assert data >= 0 && data <= 0xFF;
+
+        soundTimer = data;
     }
 
     public int getSoundTimer() {
