@@ -1,21 +1,18 @@
 package fortville.components;
 
-/*
-    Memory.java - Data/Instruction memory for simulated CHIP-8 Architecture
-*/
-
-import fortville.components.Registers;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Data/Instruction memory for simulated CHIP-8 Architecture
+ */
 public class Memory {
     private int[] memory;
 
-    public Memory(String filename, Registers registers) {
+    public Memory(String filename) {
         byte[] byteMemory = new byte[4096]; // Temporary byte array for file reads.
         memory = new int[4096];
         BufferedInputStream fileReader;

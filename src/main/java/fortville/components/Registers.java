@@ -1,5 +1,8 @@
 package fortville.components;
 
+/**
+ * Simulates the registers found in the original Chip-8 architecture  
+ */
 public class Registers {
 
     private int PC; // Program Counter - 16-bit but only 12 bits used

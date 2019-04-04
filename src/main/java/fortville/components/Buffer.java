@@ -3,7 +3,7 @@ package fortville.components;
 import fortville.interfaces.Opcode;
 
 /**
- * Buffer
+ * Buffer to store data passed between fetch/decode and execute/writeback
  */
 public class Buffer {
     Opcode opcode;
@@ -13,7 +13,6 @@ public class Buffer {
     int data3;
     boolean full;
     boolean branch;
-    boolean valid;
 
     public Buffer() {
         data1 = 0;
@@ -21,21 +20,6 @@ public class Buffer {
         data3 = 0;
         prediction = 0;
         branch = false;
-        valid = true;
-    }
-
-    /**
-     * @param valid the valid to set
-     */
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-
-    /**
-     * @return the valid
-     */
-    public boolean isValid() {
-        return valid;
     }
 
     /**

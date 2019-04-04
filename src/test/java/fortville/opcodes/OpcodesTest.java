@@ -2,7 +2,6 @@ package fortville.opcodes;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
 
 import fortville.components.Display;
 import fortville.components.Memory;
@@ -27,7 +26,7 @@ public class OpcodesTest {
         zero = 0;
 
         registers = new Registers();
-        memory = new Memory("input.ch8", registers);
+        memory = new Memory("input.ch8");
         display = new Display();
     }
 

@@ -1,7 +1,6 @@
 package fortville.components;
 
 import fortville.components.Memory;
-import fortville.interfaces.Opcode;
 import fortville.opcodes.AddConstToRegister;
 import fortville.opcodes.AddRegister;
 import fortville.opcodes.AddRegisterToI;
@@ -40,7 +39,7 @@ import fortville.opcodes.XORRegister;
 import java.util.HashMap;
 
 /**
- * FetchDecode
+ * Reads instruction from memory and decodes them, sending the approriate data to the fetch/decode buffer
  */
 public class FetchDecode implements Runnable {
     HashMap<Integer, Integer> branchMap = new HashMap<>();
@@ -60,7 +59,7 @@ public class FetchDecode implements Runnable {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
-                    System.out.println("ERROR: Fetch/Decode Interruption");
+                    System.err.println("ERROR: Fetch/Decode Interruption");
                     System.exit(-1);
                 }
             }

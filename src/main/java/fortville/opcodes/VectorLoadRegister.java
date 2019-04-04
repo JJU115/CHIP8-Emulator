@@ -6,18 +6,16 @@ import fortville.components.Registers;
 import fortville.interfaces.Opcode;
 
 /**
- * VectorLoadRegister
+ * Fx65 - LD Vx, [I]
+ * Read registers V0 through Vx from memory starting at location I.
+ * The interpreter reads values from memory starting at location I
+ * into registers V0 through Vx.
  */
 public class VectorLoadRegister implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        /*
-         * Fx65 - LD Vx, [I]
-         * Read registers V0 through Vx from memory starting at location I.
-         * The interpreter reads values from memory starting at location I
-         * into registers V0 through Vx.
-         */
+        
         int VX = data1;
         int addrOfI = registers.loadI();
 

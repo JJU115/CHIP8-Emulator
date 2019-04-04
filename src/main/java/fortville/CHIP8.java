@@ -7,6 +7,10 @@ import fortville.components.FetchDecode;
 import fortville.components.Memory;
 import fortville.components.Registers;
 
+/**
+ * Main architecture class, generates and links the components of the Chip-8 architecture
+ * Dispatches the FetchDecode and ExecuteWriteback threads 
+ */
 public class CHIP8 {
     public static void main(String[] args) {
 
@@ -17,7 +21,7 @@ public class CHIP8 {
         }
 
         Registers registers = new Registers();
-        Memory memory = new Memory(filename, registers);
+        Memory memory = new Memory(filename);
         Display display = new Display();
         Buffer fetchBuffer = new Buffer();
         FetchDecode fetchDecode = new FetchDecode(memory, registers, fetchBuffer);

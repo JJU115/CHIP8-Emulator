@@ -6,7 +6,8 @@ import fortville.components.Registers;
 import fortville.interfaces.Opcode;
 
 /**
- * ClearDisplay
+ * 00E0 - CLS
+ * Clear the display.
  */
 public class ClearDisplay implements Opcode {
     @Override

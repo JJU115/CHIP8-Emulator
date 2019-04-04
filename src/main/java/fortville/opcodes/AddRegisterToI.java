@@ -6,21 +6,19 @@ import fortville.components.Registers;
 import fortville.interfaces.Opcode;
 
 /**
- * AddRegisterToI
+ * Fx1E - ADD I, Vx
+ * Set I = I + Vx.
+ * The values of I and Vx are added,
+ * and the results are stored in I.
+ * If the result is greater than 12 bits (i.e., > 0xFFF),
+ * VF is set to 1, otherwise 0.
+ * Only the lowest 12 bits of the result are kept, and stored in I.
  */
 public class AddRegisterToI implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        /*
-         * Fx1E - ADD I, Vx
-         * Set I = I + Vx.
-         * The values of I and Vx are added,
-         * and the results are stored in I.
-         * If the result is greater than 12 bits (i.e., > 0xFFF),
-         * VF is set to 1, otherwise 0.
-         * Only the lowest 12 bits of the result are kept, and stored in I.
-         */
+
         int sum = registers.loadI() + registers.loadRegister(data1);
 
         // Set overflow flag if overflow.

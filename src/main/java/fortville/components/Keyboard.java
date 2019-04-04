@@ -2,12 +2,14 @@ package fortville.components;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Arrays;
 
 /**
- * Keyboard
- * Original key mappings mapped to
+ * Maps the orignal Chip-8 keyboard
+ * 1 | 2 | 3 | C
+ * 4 | 5 | 6 | D
+ * 7 | 8 | 9 | E
+ * A | 0 | B | F
+ * to the new keymapping 
  * 1 | 2 | 3 | 4
  * Q | W | E | R
  * A | S | D | F
@@ -32,7 +34,8 @@ public class Keyboard extends KeyAdapter {
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
-                // TODO Handle Error
+                System.err.println("ERROR: Keyboard Interruption");
+                System.exit(-1);
             }
         }
         return lastKey;

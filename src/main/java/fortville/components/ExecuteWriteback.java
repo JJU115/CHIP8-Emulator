@@ -3,7 +3,7 @@ package fortville.components;
 import fortville.interfaces.Opcode;
 
 /**
- * ExecuteWriteback
+ * Takes Opcode operation and data from fetch/decode buffer and executes it
  */
 public class ExecuteWriteback implements Runnable {
 
@@ -27,7 +27,7 @@ public class ExecuteWriteback implements Runnable {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
-                    System.out.println("ERROR: Execute/Writeback Interruption");
+                    System.err.println("ERROR: Execute/Writeback Interruption");
                     System.exit(-1);
                 }
             }

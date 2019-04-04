@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Simulates the Chip-8's 64x32 display, also provides access to the keyboard listener
+ */
 public class Display {
 
     private JFrame display;
