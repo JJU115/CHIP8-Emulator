@@ -60,7 +60,7 @@ public class FetchDecode implements Runnable {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
-                    System.out.println("ERROR: Fetch/Decode Interruption");
+                    System.err.println("ERROR: Fetch/Decode Interruption");
                     System.exit(-1);
                 }
             }

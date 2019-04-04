@@ -32,7 +32,7 @@ public class Keyboard extends KeyAdapter {
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
-                // TODO Handle Error
+                System.err.println("ERROR: Keyboard Interruption");
             }
         }
         return lastKey;

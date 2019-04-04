@@ -24,8 +24,7 @@ public class Sound implements Runnable {
             sdl.stop();
             sdl.close();
         } catch (Exception e) {
-            System.out.println("Tone output not found");
-            //TODO: Error handling
+            System.err.println("ERROR: Tone output not found.");
         }
     }
 
