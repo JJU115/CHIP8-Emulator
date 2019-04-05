@@ -15,11 +15,11 @@ public class VectorStoreRegister implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        
-        int VX = data1;
+
+        int vx = data1;
         int addrOfI = registers.loadI();
 
-        for (int regNum = 0; regNum <= VX; regNum++) {
+        for (int regNum = 0; regNum <= vx; regNum++) {
             int data = registers.loadRegister(regNum);
             memory.store(data, addrOfI + regNum);
         }

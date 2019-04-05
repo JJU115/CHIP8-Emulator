@@ -14,7 +14,7 @@ public class SetSoundTimer implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        
+
         registers.setSoundTimer(registers.loadRegister(data1));
     }
 }

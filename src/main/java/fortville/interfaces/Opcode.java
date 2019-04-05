@@ -5,7 +5,7 @@ import fortville.components.Memory;
 import fortville.components.Registers;
 
 /**
- * Interface that all opcode operations implement
+ * Interface that all opcode operations implement.
  */
 public interface Opcode {
     public void execute(int data1, int data2, int data3,

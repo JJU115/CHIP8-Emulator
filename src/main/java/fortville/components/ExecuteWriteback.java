@@ -3,7 +3,7 @@ package fortville.components;
 import fortville.interfaces.Opcode;
 
 /**
- * Takes Opcode operation and data from fetch/decode buffer and executes it
+ * Takes Opcode operation and data from fetch/decode buffer and executes it.
  */
 public class ExecuteWriteback implements Runnable {
 

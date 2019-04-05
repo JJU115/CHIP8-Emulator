@@ -4,12 +4,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
+ * Simulates the keyboard found on the original hardware that runs CHIP-8.
  * Maps the orignal Chip-8 keyboard
  * 1 | 2 | 3 | C
  * 4 | 5 | 6 | D
  * 7 | 8 | 9 | E
  * A | 0 | B | F
- * to the new keymapping 
+ * to the new keymapping
  * 1 | 2 | 3 | 4
  * Q | W | E | R
  * A | S | D | F
@@ -21,9 +22,6 @@ public class Keyboard extends KeyAdapter {
     boolean keyDown = false;
     int lastKey;
 
-    /**
-     * @return the keys
-     */
     public boolean[] getKeys() {
         return keys;
     }

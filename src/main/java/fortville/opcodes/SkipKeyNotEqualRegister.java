@@ -8,7 +8,8 @@ import fortville.interfaces.Opcode;
 /**
  * ExA1 - SKNP Vx
  * Skip next instruction if key with the value of Vx is not pressed.
- * Checks the keyboard, and if the key corresponding to the value of Vx is currently in the up position, PC is increased by 2.
+ * Checks the keyboard, and if the key corresponding to the value of Vx
+ * is currently in the up position, PC is increased by 2.
  */
 
 public class SkipKeyNotEqualRegister implements Opcode {

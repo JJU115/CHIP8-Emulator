@@ -17,7 +17,7 @@ public class StoreBCDToMemory implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        
+
         int bcd = registers.loadRegister(data1);
 
         int hundreds = bcd / 100;

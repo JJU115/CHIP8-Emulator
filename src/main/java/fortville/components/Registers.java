@@ -1,30 +1,30 @@
 package fortville.components;
 
 /**
- * Simulates the registers found in the original Chip-8 architecture  
+ * Simulates the registers found in the original Chip-8 architecture.
  */
 public class Registers {
 
-    private int PC; // Program Counter - 16-bit but only 12 bits used
-    private int SP; // Stack Pointer - 8-bit
-    private int I; // Index Register - 16-bit but only 12 bits used
+    private int regPC; // Program Counter - 16-bit but only 12 bits used
+    private int regSP; // Stack Pointer - 8-bit
+    private int regI; // Index Register - 16-bit but only 12 bits used
     private int delayTimer; // 8-bit
     private int soundTimer; // 8-bit
 
-    // 16 8-bit registers (NOTE:V[15] reserved for flag)
-    private int[] V = new int[16];
+    // 16 8-bit registers (NOTE:regV[15] reserved for flag)
+    private int[] regV = new int[16];
 
     // 16 16-bit stack locations of return addresses (only 12 bits used)
-    private int[] Stack = new int[16];
+    private int[] stack = new int[16];
 
     public Registers() {
-        // Set PC and clear everything else
-        PC = 0x200;
-        SP = 0;
-        I = 0;
+        // Set regPC and clear everything else
+        regPC = 0x200;
+        regSP = 0;
+        regI = 0;
         for (int i = 0; i < 16; i++) {
-            V[i] = 0;
-            Stack[i] = 0;
+            regV[i] = 0;
+            stack[i] = 0;
         }
         delayTimer = 0;
         soundTimer = 0;
@@ -35,49 +35,49 @@ public class Registers {
         assert regNum >= 0 && regNum <= 15;
         assert data >= 0 && data <= 0xFF;
 
-        V[regNum] = data;
+        regV[regNum] = data;
     }
 
     public int loadRegister(int regNum) {
         assert regNum >= 0 && regNum <= 15;
 
-        return V[regNum];
+        return regV[regNum];
     }
 
     public void storeI(int data) {
         assert data >= 0 && data <= 0xFFF;
 
-        I = data;
+        regI = data;
     }
 
     public int loadI() {
-        return I;
+        return regI;
     }
 
     public void storeStack(int data) {
         assert data >= 0 && data <= 0xFFF;
 
-        Stack[SP] = data;
-        SP++;
+        stack[regSP] = data;
+        regSP++;
     }
 
     public int loadStack() {
-        SP--;
-        return Stack[SP];
+        regSP--;
+        return stack[regSP];
     }
 
     public void setPC(int data) {
         assert data >= 0 && data <= 0xFFF;
 
-        PC = data;
+        regPC = data;
     }
 
     public int getPC() {
-        return PC;
+        return regPC;
     }
 
     public void incrementPC() {
-        PC += 2;
+        regPC += 2;
     }
 
     public void setDelayTimer(int data) {

@@ -18,8 +18,8 @@ public class AddConstToRegister implements Opcode {
         Memory memory, Display display, Registers registers) {
 
         int kk = data2;
-        int VX = registers.loadRegister(data1);
-        int sum = (VX + kk) & 0xFF;
+        int vx = registers.loadRegister(data1);
+        int sum = (vx + kk) & 0xFF;
 
         registers.storeRegister(data1, sum);
     }

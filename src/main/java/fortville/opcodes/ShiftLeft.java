@@ -16,7 +16,7 @@ public class ShiftLeft implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        
+
         int value = registers.loadRegister(data1);
         if ((value & 0x80) == 1) {
             registers.storeRegister(15, 1);

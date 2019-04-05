@@ -5,7 +5,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.SourceDataLine;
 
 /**
- * Plays a tone for one clock cycle in a thread
+ * Plays a tone for one clock cycle in a thread.
  */
 public class Sound implements Runnable {
 

@@ -15,16 +15,16 @@ public class SubtractInvertBorrow implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        
-        int VX = registers.loadRegister(data1);
-        int VY = registers.loadRegister(data2);
-        if (VX < VY) {
+
+        int vx = registers.loadRegister(data1);
+        int vy = registers.loadRegister(data2);
+        if (vx < vy) {
             registers.storeRegister(15, 1);
         } else {
             registers.storeRegister(15, 0);
         }
 
-        VX = (VY - VX) & 0xFF;
-        registers.storeRegister(data1, VX);
+        vx = (vy - vx) & 0xFF;
+        registers.storeRegister(data1, vx);
     }
 }

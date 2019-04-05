@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Data/Instruction memory for simulated CHIP-8 Architecture
+ * Data/Instruction memory for simulated CHIP-8 Architecture.
  */
 public class Memory {
     private int[] memory;

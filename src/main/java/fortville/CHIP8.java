@@ -8,8 +8,8 @@ import fortville.components.Memory;
 import fortville.components.Registers;
 
 /**
- * Main architecture class, generates and links the components of the Chip-8 architecture
- * Dispatches the FetchDecode and ExecuteWriteback threads 
+ * Main architecture class, generates and links the components of the Chip-8 architecture.
+ * Dispatches the FetchDecode and ExecuteWriteback threads.
  */
 public class CHIP8 {
     public static void main(String[] args) {

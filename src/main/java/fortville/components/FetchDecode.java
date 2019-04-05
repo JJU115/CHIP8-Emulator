@@ -39,7 +39,8 @@ import fortville.opcodes.XORRegister;
 import java.util.HashMap;
 
 /**
- * Reads instruction from memory and decodes them, sending the approriate data to the fetch/decode buffer
+ * Reads instruction from memory and decodes them,
+ * sending the approriate data to the fetch/decode buffer.
  */
 public class FetchDecode implements Runnable {
     HashMap<Integer, Integer> branchMap = new HashMap<>();

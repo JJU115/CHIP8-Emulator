@@ -17,9 +17,9 @@ public class SkipNextInstructionEqualConst implements Opcode {
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
 
-        int VX = registers.loadRegister(data1);
+        int vx = registers.loadRegister(data1);
         int kk = data2;
-        if (VX == kk) {
+        if (vx == kk) {
             registers.incrementPC();
         }
     }

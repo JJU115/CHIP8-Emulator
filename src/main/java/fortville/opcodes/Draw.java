@@ -16,18 +16,18 @@ public class Draw implements Opcode {
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
 
-        int VX = registers.loadRegister(data1);
-        int VY = registers.loadRegister(data2);
+        int vx = registers.loadRegister(data1);
+        int vy = registers.loadRegister(data2);
 
         int addrOfI = registers.loadI();
-        int nBytes = data3 & 0xFF;
-        int[] spriteData = new int[nBytes];
+        int numBytes = data3 & 0xFF;
+        int[] spriteData = new int[numBytes];
 
-        for (int i = 0; i < nBytes; i++) {
+        for (int i = 0; i < numBytes; i++) {
             spriteData[i] = memory.load(addrOfI++);
         }
 
-        int collision = display.drawSprite(spriteData, VX, VY);
+        int collision = display.drawSprite(spriteData, vx, vy);
         registers.storeRegister(15, collision);
     }
 }

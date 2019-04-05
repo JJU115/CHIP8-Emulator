@@ -19,7 +19,7 @@ public class SetRegisterToRand implements Opcode {
     @Override
     public void execute(int data1, int data2, int data3,
         Memory memory, Display display, Registers registers) {
-        
+
         Random rand = new Random();
         registers.storeRegister(data1, rand.nextInt(256) & data2);
     }
