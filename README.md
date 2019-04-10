@@ -2,7 +2,7 @@
 
 This is an academic software project completed for a course on computer architecture. It intends to simulate an 8-bit processor capable of executing instructions from the CHIP-8 language.
 
-Rather than abstract emulation it models physical hardware components and their interactions as accurately as possible to execute CHIP-8 ROMs.
+Rather than abstract emulation it models physical hardware components and their interactions as accurately as possible to execute CHIP-8 ROMs. For full reference on the working details consult the final_project_report.pdf file.
 
 <h2>To run</h2>
  <p>
