@@ -15,12 +15,12 @@ This project is built with Gradle, install here --> https://gradle.org/<br>
   <p>
   The ROM_Name field above can be one of the following included ROMs:
    <ul>
-     <li>'pong.ch8></li>
-     <li>'invaders.ch8></li>
-     <li>'tetris.ch8></li>
-     <li>'tank.ch8></li>
-     <li>'hidden.ch8></li>
-     <li>'breakout.ch8></li>
+     <li>'pong.ch8'</li>
+     <li>'invaders.ch8'</li>
+     <li>'tetris.ch8'</li>
+     <li>'tank.ch8'</li>
+     <li>'hidden.ch8'</li>
+     <li>'breakout.ch8'</li>
   </ul>
   Or any other proper .ch8 file.<br>
   A proper invocation might be for example: <b>gradle run --args='invaders.ch8'</b>
